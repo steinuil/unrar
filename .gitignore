@@ -1,0 +1,4 @@
+.cache/
+*.o
+unrar
+compile_commands.json
