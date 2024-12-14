@@ -1,6 +1,9 @@
 #ifndef _RAR_LOG_
 #define _RAR_LOG_
 
+#include "os.hpp"
+#include "options.hpp"
+
 void InitLogOptions(const std::wstring &LogFileName,RAR_CHARSET CSet);
 void CloseLogOptions();
 

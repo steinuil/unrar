@@ -1,6 +1,9 @@
 #ifndef _RAR_FINDDATA_
 #define _RAR_FINDDATA_
 
+#include "os.hpp"
+#include "timefn.hpp"
+
 enum FINDDATA_FLAGS {
   FDDF_SECONDDIR=1  // Second encounter of same directory in SCAN_GETDIRSTWICE ScanTree mode.
 };

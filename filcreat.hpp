@@ -1,6 +1,9 @@
 #ifndef _RAR_FILECREATE_
 #define _RAR_FILECREATE_
 
+#include "os.hpp"
+#include "cmddata.hpp"
+
 bool FileCreate(CommandData *Cmd,File *NewFile,std::wstring &Name,
                 bool *UserReject,int64 FileSize=INT64NDF,
                 RarTime *FileTime=NULL,bool WriteOnly=false);

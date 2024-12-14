@@ -1,6 +1,10 @@
 #ifndef _RAR_OPTIONS_
 #define _RAR_OPTIONS_
 
+#include "os.hpp"
+#include "hash.hpp"
+#include "timefn.hpp"
+
 #define DEFAULT_RECOVERY     -3
 
 #define DEFAULT_RECVOLUMES  -10

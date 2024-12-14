@@ -1,6 +1,8 @@
 #ifndef _RAR_UNICODE_
 #define _RAR_UNICODE_
 
+#include "os.hpp"
+
 #if defined( _WIN_ALL)
 #define DBCS_SUPPORTED
 #endif

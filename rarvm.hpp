@@ -1,6 +1,9 @@
 #ifndef _RAR_VM_
 #define _RAR_VM_
 
+#include "os.hpp"
+#include "getbits.hpp"
+
 #define VM_MEMSIZE                  0x40000
 #define VM_MEMMASK           (VM_MEMSIZE-1)
 

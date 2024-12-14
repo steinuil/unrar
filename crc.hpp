@@ -1,6 +1,8 @@
 #ifndef _RAR_CRC_
 #define _RAR_CRC_
 
+#include "os.hpp"
+
 // This function is only to intialize external CRC tables. We do not need to
 // call it before calculating CRC32.
 void InitCRC32(uint *CRCTab);

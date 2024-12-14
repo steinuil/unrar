@@ -1,6 +1,8 @@
 #ifndef _RAR_SHA256_
 #define _RAR_SHA256_
 
+#include "os.hpp"
+
 #define SHA256_DIGEST_SIZE 32
 
 typedef struct

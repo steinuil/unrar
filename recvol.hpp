@@ -1,6 +1,12 @@
 #ifndef _RAR_RECVOL_
 #define _RAR_RECVOL_
 
+#include "cmddata.hpp"
+#include "file.hpp"
+#include "os.hpp"
+#include "rs16.hpp"
+#include "threadpool.hpp"
+
 #define REV5_SIGN      "Rar!\x1aRev"
 #define REV5_SIGN_SIZE             8
 

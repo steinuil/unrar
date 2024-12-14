@@ -1,6 +1,11 @@
 #ifndef _RAR_CRYPT_
 #define _RAR_CRYPT_
 
+#include "os.hpp"
+#include "secpassword.hpp"
+#include "sha256.hpp"
+#include "rijndael.hpp"
+#include "hash.hpp"
 
 enum CRYPT_METHOD {
   CRYPT_NONE,CRYPT_RAR13,CRYPT_RAR15,CRYPT_RAR20,CRYPT_RAR30,CRYPT_RAR50

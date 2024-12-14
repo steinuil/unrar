@@ -1,6 +1,8 @@
 #ifndef _RAR_STRLIST_
 #define _RAR_STRLIST_
 
+#include "os.hpp"
+
 class StringList
 {
   private:

@@ -1,6 +1,9 @@
 #ifndef _RAR_FILE_
 #define _RAR_FILE_
 
+#include "os.hpp"
+#include "timefn.hpp"
+
 #define FILE_USE_OPEN
 
 #ifdef _WIN_ALL

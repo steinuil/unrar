@@ -1,6 +1,8 @@
 #ifndef _RAR_RS16_
 #define _RAR_RS16_
 
+#include "os.hpp"
+
 class RSCoder16
 {
   private:

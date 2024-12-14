@@ -1,6 +1,10 @@
 #ifndef _RAR_CONSIO_
 #define _RAR_CONSIO_
 
+#include "os.hpp"
+#include "options.hpp"
+#include "ui.hpp"
+
 void InitConsole();
 void SetConsoleMsgStream(MESSAGE_TYPE MsgStream);
 void SetConsoleRedirectCharset(RAR_CHARSET RedirectCharset);

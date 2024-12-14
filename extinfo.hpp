@@ -1,6 +1,9 @@
 #ifndef _RAR_EXTINFO_
 #define _RAR_EXTINFO_
 
+#include "os.hpp"
+#include "cmddata.hpp"
+
 bool IsRelativeSymlinkSafe(CommandData *Cmd,const std::wstring &SrcName,std::wstring PrepSrcName,const std::wstring &TargetName);
 bool ExtractSymlink(CommandData *Cmd,ComprDataIO &DataIO,Archive &Arc,const std::wstring &LinkName,bool &UpLink);
 #ifdef _UNIX

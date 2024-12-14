@@ -1,6 +1,8 @@
 #ifndef _RAR_STRFN_
 #define _RAR_STRFN_
 
+#include "os.hpp"
+
 const char* NullToEmpty(const char *Str);
 const wchar* NullToEmpty(const wchar *Str);
 void IntToExt(const std::string &Src,std::string &Dest);

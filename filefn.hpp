@@ -1,6 +1,10 @@
 #ifndef _RAR_FILEFN_
 #define _RAR_FILEFN_
 
+#include "os.hpp"
+#include "timefn.hpp"
+#include "file.hpp"
+
 enum MKDIR_CODE {MKDIR_SUCCESS,MKDIR_ERROR,MKDIR_BADPATH};
 
 MKDIR_CODE MakeDir(const std::wstring &Name,bool SetAttr,uint Attr);

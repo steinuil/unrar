@@ -1,6 +1,8 @@
 #ifndef _RAR_ERRHANDLER_
 #define _RAR_ERRHANDLER_
 
+#include "os.hpp"
+
 enum RAR_EXIT // RAR exit code.
 { 
   RARX_SUCCESS   =   0,

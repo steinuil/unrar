@@ -1,6 +1,8 @@
 #ifndef _UNRAR_DLL_
 #define _UNRAR_DLL_
 
+#include "raros.hpp"
+
 #pragma pack(push, 1)
 
 #define ERAR_SUCCESS             0

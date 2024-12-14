@@ -1,6 +1,10 @@
 #ifndef _RAR_FILESTR_
 #define _RAR_FILESTR_
 
+#include "os.hpp"
+#include "options.hpp"
+#include "strlist.hpp"
+
 bool ReadTextFile(
   const std::wstring &Name,
   StringList *List,

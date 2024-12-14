@@ -1,6 +1,10 @@
 #ifndef _RAR_DATAHASH_
 #define _RAR_DATAHASH_
 
+#include "os.hpp"
+#include "sha256.hpp"
+#include "blake2s.hpp"
+
 enum HASH_TYPE {HASH_NONE,HASH_RAR14,HASH_CRC32,HASH_BLAKE2};
 
 struct HashValue

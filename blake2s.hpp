@@ -2,6 +2,9 @@
 #ifndef _RAR_BLAKE2_
 #define _RAR_BLAKE2_
 
+#include "os.hpp"
+#include "rardefs.hpp"
+
 #define BLAKE2_DIGEST_SIZE 32
 #define BLAKE2_THREADS_NUMBER 8
 

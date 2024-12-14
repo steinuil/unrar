@@ -1,6 +1,12 @@
 #ifndef _RAR_CMDDATA_
 #define _RAR_CMDDATA_
 
+#include "archive.hpp"
+#include "headers.hpp"
+#include "os.hpp"
+#include "errhnd.hpp"
+#include "options.hpp"
+#include "strlist.hpp"
 
 #define DefaultStoreList L"7z;ace;arj;bz2;cab;gz;jpeg;jpg;lha;lz;lzh;mp3;rar;taz;tbz;tbz2;tgz;txz;xz;z;zip;zipx;zst;tzst"
 

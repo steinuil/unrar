@@ -1,6 +1,8 @@
 #ifndef _RAR_COMPRESS_
 #define _RAR_COMPRESS_
 
+#include "os.hpp"
+
 // Combine pack and unpack constants to class to avoid polluting global
 // namespace with numerous short names.
 class PackDef

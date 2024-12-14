@@ -1,6 +1,9 @@
 #ifndef _RAR_QOPEN_
 #define _RAR_QOPEN_
 
+#include "os.hpp"
+#include "crypt.hpp"
+
 struct QuickOpenItem
 {
   byte *Header;

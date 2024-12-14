@@ -1,6 +1,8 @@
 #ifndef _RAR_MATCH_
 #define _RAR_MATCH_
 
+#include "os.hpp"
+
 enum {
    MATCH_NAMES,        // Paths are ignored.
                        // Compares names only using wildcards.

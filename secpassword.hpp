@@ -1,6 +1,9 @@
 #ifndef _RAR_SECURE_PASSWORD_
 #define _RAR_SECURE_PASSWORD_
 
+#include "os.hpp"
+#include "rardefs.hpp"
+
 // Store a password securely (if data encryption is provided by OS)
 // or obfuscated to make search for password in memory dump less trivial.
 class SecPassword

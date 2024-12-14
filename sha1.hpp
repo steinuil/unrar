@@ -1,6 +1,8 @@
 #ifndef _RAR_SHA1_
 #define _RAR_SHA1_
 
+#include "os.hpp"
+
 typedef struct {
     uint32 state[5];
     uint64 count;

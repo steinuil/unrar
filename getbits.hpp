@@ -1,6 +1,9 @@
 #ifndef _RAR_GETBITS_
 #define _RAR_GETBITS_
 
+#include "os.hpp"
+#include "rawint.hpp"
+
 class BitInput
 {
   public:

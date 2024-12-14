@@ -1,6 +1,8 @@
 #ifndef _RAR_TIMEFN_
 #define _RAR_TIMEFN_
 
+#include "os.hpp"
+
 struct RarLocalTime
 {
   uint Year;

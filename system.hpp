@@ -1,6 +1,9 @@
 #ifndef _RAR_SYSTEM_
 #define _RAR_SYSTEM_
 
+#include "os.hpp"
+#include "options.hpp"
+
 #ifdef _WIN_ALL
 #ifndef BELOW_NORMAL_PRIORITY_CLASS
 #define BELOW_NORMAL_PRIORITY_CLASS     0x00004000

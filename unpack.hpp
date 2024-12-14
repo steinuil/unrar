@@ -1,6 +1,13 @@
 #ifndef _RAR_UNPACK_
 #define _RAR_UNPACK_
 
+#include "os.hpp"
+#include "getbits.hpp"
+#include "compress.hpp"
+#include "rarvm.hpp"
+#include "rdwrfn.hpp"
+#include "model.hpp"
+
 // Maximum allowed number of compressed bits processed in quick mode.
 #define MAX_QUICK_DECODE_BITS       9
 

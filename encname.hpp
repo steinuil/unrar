@@ -1,6 +1,8 @@
 #ifndef _RAR_ENCNAME_
 #define _RAR_ENCNAME_
 
+#include "os.hpp"
+
 class EncodeFileName
 {
   private:

@@ -1,6 +1,10 @@
 #ifndef _RAR_EXTRACT_
 #define _RAR_EXTRACT_
 
+#include "os.hpp"
+#include "archive.hpp"
+#include "file.hpp"
+
 enum EXTRACT_ARC_CODE {EXTRACT_ARC_NEXT,EXTRACT_ARC_REPEAT};
 
 class CmdExtract

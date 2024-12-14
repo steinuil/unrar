@@ -1,6 +1,11 @@
 #ifndef _RAR_SCANTREE_
 #define _RAR_SCANTREE_
 
+#include "os.hpp"
+#include "options.hpp"
+#include "strlist.hpp"
+#include "find.hpp"
+
 enum SCAN_DIRS 
 { 
   SCAN_SKIPDIRS,     // Skip directories, but recurse for files if recursion mode is enabled.

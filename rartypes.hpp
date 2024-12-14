@@ -1,7 +1,7 @@
 #ifndef _RAR_TYPES_
 #define _RAR_TYPES_
 
-#include <stdint.h>
+#include <stdint.h> // IWYU pragma: export
 
 typedef uint8_t          byte;   // Unsigned 8 bits.
 typedef uint16_t         ushort; // Preferably 16 bits, but can be more.

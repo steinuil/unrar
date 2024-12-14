@@ -1,6 +1,8 @@
 #ifndef _RIJNDAEL_H_
 #define _RIJNDAEL_H_
 
+#include "os.hpp"
+
 /**************************************************************************
  * This code is based on Szymon Stefanek public domain AES implementation *
  **************************************************************************/

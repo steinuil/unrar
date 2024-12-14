@@ -1,6 +1,10 @@
 #ifndef _RAR_DATAIO_
 #define _RAR_DATAIO_
 
+#include "os.hpp"
+#include "file.hpp"
+#include "headers.hpp"
+
 class Archive;
 class CmdAdd;
 class Unpack;

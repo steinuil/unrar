@@ -1,6 +1,8 @@
 #ifndef _RAR_PATHFN_
 #define _RAR_PATHFN_
 
+#include "os.hpp"
+
 wchar* PointToName(const wchar *Path);
 std::wstring PointToName(const std::wstring &Path);
 size_t GetNamePos(const std::wstring &Path);

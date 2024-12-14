@@ -1,6 +1,8 @@
 #ifndef _RAR_RAWINT_
 #define _RAR_RAWINT_
 
+#include "os.hpp"
+
 #define  rotls(x,n,xsize)  (((x)<<(n)) | ((x)>>(xsize-(n))))
 #define  rotrs(x,n,xsize)  (((x)>>(n)) | ((x)<<(xsize-(n))))
 #define  rotl32(x,n)       rotls(x,n,32)

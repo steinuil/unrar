@@ -1,6 +1,18 @@
 #ifndef _RAR_ARCHIVE_
 #define _RAR_ARCHIVE_
 
+#include "os.hpp"
+#include "headers.hpp"
+#include "file.hpp"
+#include "rdwrfn.hpp"
+
+#ifdef USE_QOPEN
+#include "qopen.hpp"
+#endif
+
+// Forward declaration to appease clangd
+class CommandData;
+
 class PPack;
 class RawRead;
 class RawWrite;

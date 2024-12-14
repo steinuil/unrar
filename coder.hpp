@@ -1,3 +1,10 @@
+#pragma once
+
+#include "os.hpp"
+
+// Forward declaration to appease clangd
+class Unpack;
+
 /****************************************************************************
  *  Contents: 'Carryless rangecoder' by Dmitry Subbotin                     *
  ****************************************************************************/

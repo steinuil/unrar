@@ -4,6 +4,8 @@
  *  1999-2000                                                               *
  *  Contents: interface to memory allocation routines                       *
  ****************************************************************************/
+#include "os.hpp"
+
 #if !defined(_SUBALLOC_H_)
 #define _SUBALLOC_H_
 

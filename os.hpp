@@ -1,6 +1,9 @@
 #ifndef _RAR_OS_
 #define _RAR_OS_
 
+#include "raros.hpp" // IWYU pragma: export
+#include "rartypes.hpp" // IWYU pragma: export
+
 #define FALSE 0
 #define TRUE  1
 
@@ -8,11 +11,12 @@
 #define SILENT
 #endif
 
-#include <new>
-#include <string>
-#include <vector>
-#include <deque>
-#include <memory> // For automatic pointers.
+#include <new> // IWYU pragma: export
+#include <string> // IWYU pragma: export
+#include <vector> // IWYU pragma: export
+#include <deque> // IWYU pragma: export
+ // For automatic pointers.
+#include <memory> // IWYU pragma: export
 
 
 #ifdef _WIN_ALL
@@ -45,30 +49,30 @@
 
 #define WIN32_LEAN_AND_MEAN
 
-#include <windows.h>
-#include <prsht.h>
-#include <shlwapi.h>
+#include <windows.h> // IWYU pragma: export
+#include <prsht.h> // IWYU pragma: export
+#include <shlwapi.h> // IWYU pragma: export
 #pragma comment(lib, "Shlwapi.lib")
-#include <PowrProf.h>
+#include <PowrProf.h> // IWYU pragma: export
 #pragma comment(lib, "PowrProf.lib")
-#include <shellapi.h>
-#include <shlobj.h>
-#include <winioctl.h>
-#include <wincrypt.h>
-#include <wchar.h>
-#include <wctype.h>
+#include <shellapi.h> // IWYU pragma: export
+#include <shlobj.h> // IWYU pragma: export
+#include <winioctl.h> // IWYU pragma: export
+#include <wincrypt.h> // IWYU pragma: export
+#include <wchar.h> // IWYU pragma: export
+#include <wctype.h> // IWYU pragma: export
 
 // For WMI requests.
-#include <comdef.h>
-#include <Wbemidl.h>
+#include <comdef.h> // IWYU pragma: export
+#include <Wbemidl.h> // IWYU pragma: export
 #pragma comment(lib, "wbemuuid.lib")
 
 
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <dos.h>
-#include <direct.h>
-#include <intrin.h>
+#include <sys/types.h> // IWYU pragma: export
+#include <sys/stat.h> // IWYU pragma: export
+#include <dos.h> // IWYU pragma: export
+#include <direct.h> // IWYU pragma: export
+#include <intrin.h> // IWYU pragma: export
 
 // Use SSE only for x86/x64, not ARM Windows.
 #if defined(_M_IX86) || defined(_M_X64)
@@ -76,16 +80,16 @@
   #define SSE_ALIGNMENT 16
 #endif
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <stdarg.h>
-#include <string.h>
-#include <ctype.h>
-#include <fcntl.h>
-#include <dos.h>
-#include <io.h>
-#include <time.h>
-#include <signal.h>
+#include <stdio.h> // IWYU pragma: export
+#include <stdlib.h> // IWYU pragma: export
+#include <stdarg.h> // IWYU pragma: export
+#include <string.h> // IWYU pragma: export
+#include <ctype.h> // IWYU pragma: export
+#include <fcntl.h> // IWYU pragma: export
+#include <dos.h> // IWYU pragma: export
+#include <io.h> // IWYU pragma: export
+#include <time.h> // IWYU pragma: export
+#include <signal.h> // IWYU pragma: export
 
 #define SAVE_LINKS
 
@@ -113,39 +117,39 @@
 
 #ifdef _UNIX
 
-#include <unistd.h>
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <sys/file.h>
+#include <unistd.h> // IWYU pragma: export
+#include <sys/types.h> // IWYU pragma: export
+#include <sys/stat.h> // IWYU pragma: export
+#include <sys/file.h> // IWYU pragma: export
 #if defined(__QNXNTO__)
-  #include <sys/param.h>
+  #include <sys/param.h> // IWYU pragma: export
 #endif
 #ifdef _APPLE
-  #include <sys/sysctl.h>
+  #include <sys/sysctl.h> // IWYU pragma: export
 #endif
 #ifndef SFX_MODULE
-    #include <sys/statvfs.h>
+    #include <sys/statvfs.h> // IWYU pragma: export
 #endif
-#include <pwd.h>
-#include <grp.h>
-#include <wchar.h>
-#include <wctype.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <stdarg.h>
-#include <string.h>
-#include <ctype.h>
-#include <fcntl.h>
-#include <errno.h>
-#include <dirent.h>
-#include <time.h>
-#include <signal.h>
-#include <utime.h>
-#include <locale.h>
+#include <pwd.h> // IWYU pragma: export
+#include <grp.h> // IWYU pragma: export
+#include <wchar.h> // IWYU pragma: export
+#include <wctype.h> // IWYU pragma: export
+#include <stdio.h> // IWYU pragma: export
+#include <stdlib.h> // IWYU pragma: export
+#include <stdarg.h> // IWYU pragma: export
+#include <string.h> // IWYU pragma: export
+#include <ctype.h> // IWYU pragma: export
+#include <fcntl.h> // IWYU pragma: export
+#include <errno.h> // IWYU pragma: export
+#include <dirent.h> // IWYU pragma: export
+#include <time.h> // IWYU pragma: export
+#include <signal.h> // IWYU pragma: export
+#include <utime.h> // IWYU pragma: export
+#include <locale.h> // IWYU pragma: export
 
 #ifdef __GNUC__
   #if defined(__i386__) || defined(__x86_64__)
-    #include <x86intrin.h>
+    #include <x86intrin.h> // IWYU pragma: export
     
     #define USE_SSE
     #define SSE_ALIGNMENT 16
@@ -153,10 +157,10 @@
 #endif
 
 #if defined(__aarch64__) && (defined(__ARM_FEATURE_CRYPTO) || defined(__ARM_FEATURE_CRC32))
-#include <arm_neon.h>
+#include <arm_neon.h> // IWYU pragma: export
 #ifndef _APPLE
-#include <sys/auxv.h>
-#include <asm/hwcap.h>
+#include <sys/auxv.h> // IWYU pragma: export
+#include <asm/hwcap.h> // IWYU pragma: export
 #endif
 #ifdef __ARM_FEATURE_CRYPTO
 #define USE_NEON_AES
@@ -171,7 +175,7 @@
 #endif
 
 #if defined(__linux) || defined(__FreeBSD__)
-#include <sys/time.h>
+#include <sys/time.h> // IWYU pragma: export
 #define USE_LUTIMES
 #endif
 

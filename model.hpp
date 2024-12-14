@@ -1,6 +1,7 @@
 #ifndef _RAR_PPMMODEL_
 #define _RAR_PPMMODEL_
 
+#include "os.hpp"
 #include "coder.hpp"
 #include "suballoc.hpp"
 

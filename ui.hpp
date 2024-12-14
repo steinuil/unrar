@@ -1,6 +1,10 @@
 #ifndef _RAR_UI_
 #define _RAR_UI_
 
+#include "cmddata.hpp"
+#include "os.hpp"
+#include "timefn.hpp"
+
 // UIERROR_ - error message;
 // UIMSG_   - informational message;
 // UIWAIT_  - message waiting for user confirmation;

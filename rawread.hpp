@@ -1,6 +1,10 @@
 #ifndef _RAR_RAWREAD_
 #define _RAR_RAWREAD_
 
+#include "os.hpp"
+#include "crypt.hpp"
+#include "file.hpp"
+
 class RawRead
 {
   private:
