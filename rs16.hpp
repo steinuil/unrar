@@ -3,26 +3,26 @@
 
 #include "os.hpp"
 
-class RSCoder16
-{
-  private:
-    static const uint gfSize=65535;   // Galois field size.
-    void gfInit();                    // Galois field inititalization.
-    inline uint gfAdd(uint a,uint b); // Addition in Galois field. 
-    inline uint gfMul(uint a,uint b); // Multiplication in Galois field. 
-    inline uint gfInv(uint a);        // Inverse element in Galois field.
-    uint *gfExp;                      // Galois field exponents.
-    uint *gfLog;                      // Galois field logarithms.
+class RSCoder16 {
+   private:
+    static const uint gfSize = 65535;  // Galois field size.
+    void gfInit();                     // Galois field inititalization.
+    inline uint gfAdd(uint a, uint b); // Addition in Galois field.
+    inline uint gfMul(uint a, uint b); // Multiplication in Galois field.
+    inline uint gfInv(uint a);         // Inverse element in Galois field.
+    uint *gfExp;                       // Galois field exponents.
+    uint *gfLog;                       // Galois field logarithms.
 
     void MakeEncoderMatrix();
     void MakeDecoderMatrix();
     void InvertDecoderMatrix();
 
 #ifdef USE_SSE
-#if defined(USE_SSE) && defined(__GNUC__)
+#    if defined(USE_SSE) && defined(__GNUC__)
     __attribute__((target("ssse3")))
-#endif
-    bool SSE_UpdateECC(uint DataNum, uint ECCNum, const byte *Data, byte *ECC, size_t BlockSize);
+#    endif
+    bool
+    SSE_UpdateECC(uint DataNum, uint ECCNum, const byte *Data, byte *ECC, size_t BlockSize);
 #endif
 
     bool Decoding;    // If we are decoding or encoding data.
@@ -35,7 +35,7 @@ class RSCoder16
     uint *DataLog; // Buffer to store data logarithms for UpdateECC.
     size_t DataLogSize;
 
-  public:
+   public:
     RSCoder16();
     ~RSCoder16();
 

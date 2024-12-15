@@ -5,49 +5,58 @@
 #include "archive.hpp"
 #include "file.hpp"
 
-enum EXTRACT_ARC_CODE {EXTRACT_ARC_NEXT,EXTRACT_ARC_REPEAT};
+enum EXTRACT_ARC_CODE {
+    EXTRACT_ARC_NEXT,
+    EXTRACT_ARC_REPEAT
+};
 
-class CmdExtract
-{
-  private:
-    struct ExtractRef
-    {
-      std::wstring RefName;
-      std::wstring TmpName;
-      uint64 RefCount;
+class CmdExtract {
+   private:
+    struct ExtractRef {
+        std::wstring RefName;
+        std::wstring TmpName;
+        uint64 RefCount;
     };
+
     std::vector<ExtractRef> RefList;
 
-    struct AnalyzeData
-    {
-      std::wstring StartName;
-      uint64 StartPos;
-      std::wstring EndName;
-      uint64 EndPos;
+    struct AnalyzeData {
+        std::wstring StartName;
+        uint64 StartPos;
+        std::wstring EndName;
+        uint64 EndPos;
     } Analyze;
 
     bool ArcAnalyzed;
 
     void FreeAnalyzeData();
     EXTRACT_ARC_CODE ExtractArchive();
-    bool ExtractFileCopy(File &New,const std::wstring &ArcName,const std::wstring &RedirName,const std::wstring &NameNew,const std::wstring &NameExisting,int64 UnpSize);
-    void ExtrPrepareName(Archive &Arc,const std::wstring &ArcFileName,std::wstring &DestName);
+    bool ExtractFileCopy(
+        File &New,
+        const std::wstring &ArcName,
+        const std::wstring &RedirName,
+        const std::wstring &NameNew,
+        const std::wstring &NameExisting,
+        int64 UnpSize
+    );
+    void ExtrPrepareName(Archive &Arc, const std::wstring &ArcFileName, std::wstring &DestName);
 #ifdef RARDLL
     bool ExtrDllGetPassword();
 #else
-    bool ExtrGetPassword(Archive &Arc,const std::wstring &ArcFileName,RarCheckPassword *CheckPwd);
+    bool ExtrGetPassword(Archive &Arc, const std::wstring &ArcFileName, RarCheckPassword *CheckPwd);
 #endif
 #if defined(_WIN_ALL) && !defined(SFX_MODULE)
-    void ConvertDosPassword(Archive &Arc,SecPassword &DestPwd);
+    void ConvertDosPassword(Archive &Arc, SecPassword &DestPwd);
 #endif
-    void ExtrCreateDir(Archive &Arc,const std::wstring &ArcFileName);
-    bool ExtrCreateFile(Archive &Arc,File &CurFile);
-    bool CheckUnpVer(Archive &Arc,const std::wstring &ArcFileName);
+    void ExtrCreateDir(Archive &Arc, const std::wstring &ArcFileName);
+    bool ExtrCreateFile(Archive &Arc, File &CurFile);
+    bool CheckUnpVer(Archive &Arc, const std::wstring &ArcFileName);
 #ifndef SFX_MODULE
-    void AnalyzeArchive(const std::wstring &ArcName,bool Volume,bool NewNumbering);
-    void GetFirstVolIfFullSet(const std::wstring &SrcName,bool NewNumbering,std::wstring &DestName);
+    void AnalyzeArchive(const std::wstring &ArcName, bool Volume, bool NewNumbering);
+    void
+    GetFirstVolIfFullSet(const std::wstring &SrcName, bool NewNumbering, std::wstring &DestName);
 #endif
-    bool CheckWinLimit(Archive &Arc,std::wstring &ArcFileName);
+    bool CheckWinLimit(Archive &Arc, std::wstring &ArcFileName);
 
     RarTime StartTime; // Time when extraction started.
 
@@ -86,15 +95,15 @@ class CmdExtract
     std::wstring LastCheckedSymlink;
 
 #if defined(_WIN_ALL) && !defined(SFX_MODULE) && !defined(SILENT)
-    bool Fat32,NotFat32;
+    bool Fat32, NotFat32;
 #endif
-  public:
+   public:
     CmdExtract(CommandData *Cmd);
     ~CmdExtract();
     void DoExtract();
     void ExtractArchiveInit(Archive &Arc);
-    bool ExtractCurrentFile(Archive &Arc,size_t HeaderSize,bool &Repeat);
-    static void UnstoreFile(ComprDataIO &DataIO,int64 DestUnpSize);
+    bool ExtractCurrentFile(Archive &Arc, size_t HeaderSize, bool &Repeat);
+    static void UnstoreFile(ComprDataIO &DataIO, int64 DestUnpSize);
 };
 
 #endif

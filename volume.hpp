@@ -4,7 +4,6 @@
 #include "os.hpp"
 #include "archive.hpp"
 
-bool MergeArchive(Archive &Arc,ComprDataIO *DataIO,bool ShowFileName,
-                  wchar Command);
+bool MergeArchive(Archive &Arc, ComprDataIO *DataIO, bool ShowFileName, wchar Command);
 
 #endif

@@ -3,19 +3,25 @@
 
 #include "os.hpp"
 
-class EncodeFileName
-{
-  private:
-    void AddFlags(byte Value,std::vector<byte> &EncName);
+class EncodeFileName {
+   private:
+    void AddFlags(byte Value, std::vector<byte> &EncName);
 
     byte Flags;
     uint FlagBits;
     size_t FlagsPos;
     size_t DestSize;
-  public:
+
+   public:
     EncodeFileName();
-    void Encode(const std::string &Name,const std::wstring &NameW,std::vector<byte> &EncName);
-    void Decode(const char *Name,size_t NameSize,const byte *EncName,size_t EncSize,std::wstring &NameW);
+    void Encode(const std::string &Name, const std::wstring &NameW, std::vector<byte> &EncName);
+    void Decode(
+        const char *Name,
+        size_t NameSize,
+        const byte *EncName,
+        size_t EncSize,
+        std::wstring &NameW
+    );
 };
 
 #endif

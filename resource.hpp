@@ -4,10 +4,9 @@
 #include "os.hpp"
 
 #ifdef RARDLL
-#define St(x) (L"")
+#    define St(x) (L"")
 #else
 const wchar *St(MSGID StringId);
 #endif
-
 
 #endif

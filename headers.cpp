@@ -1,41 +1,39 @@
 #include "rar.hpp"
 
-void FileHeader::Reset(size_t SubDataSize)
-{
-  SubData.resize(SubDataSize);
-  BaseBlock::Reset();
-  FileHash.Init(HASH_NONE);
-  mtime.Reset();
-  atime.Reset();
-  ctime.Reset();
-  SplitBefore=false;
-  SplitAfter=false;
+void FileHeader::Reset(size_t SubDataSize) {
+    SubData.resize(SubDataSize);
+    BaseBlock::Reset();
+    FileHash.Init(HASH_NONE);
+    mtime.Reset();
+    atime.Reset();
+    ctime.Reset();
+    SplitBefore = false;
+    SplitAfter = false;
 
-  UnknownUnpSize=0;
+    UnknownUnpSize = 0;
 
-  SubFlags=0; // Important for RAR 3.0 subhead.
-  
-  CryptMethod=CRYPT_NONE;
-  Encrypted=false;
-  SaltSet=false;
-  UsePswCheck=false;
-  UseHashKey=false;
-  Lg2Count=0;
+    SubFlags = 0; // Important for RAR 3.0 subhead.
 
-  Solid=false;
-  Dir=false;
-  WinSize=0;
-  Inherited=false;
-  SubBlock=false;
-  CommentInHeader=false;
-  Version=false;
-  LargeFile=false;
+    CryptMethod = CRYPT_NONE;
+    Encrypted = false;
+    SaltSet = false;
+    UsePswCheck = false;
+    UseHashKey = false;
+    Lg2Count = 0;
 
-  RedirType=FSREDIR_NONE;
-  DirTarget=false;
-  UnixOwnerSet=false;
+    Solid = false;
+    Dir = false;
+    WinSize = 0;
+    Inherited = false;
+    SubBlock = false;
+    CommentInHeader = false;
+    Version = false;
+    LargeFile = false;
+
+    RedirType = FSREDIR_NONE;
+    DirTarget = false;
+    UnixOwnerSet = false;
 }
-
 
 /*
 FileHeader& FileHeader::operator = (FileHeader &hd)
@@ -48,8 +46,6 @@ FileHeader& FileHeader::operator = (FileHeader &hd)
 }
 */
 
-
-void MainHeader::Reset()
-{
-  *this={};
+void MainHeader::Reset() {
+    *this = {};
 }

@@ -4,13 +4,14 @@
 #include "os.hpp"
 #include "options.hpp"
 
-void InitLogOptions(const std::wstring &LogFileName,RAR_CHARSET CSet);
+void InitLogOptions(const std::wstring &LogFileName, RAR_CHARSET CSet);
 void CloseLogOptions();
 
 #ifdef SILENT
-inline void Log(const wchar *ArcName,const wchar *fmt,...) {}
+inline void Log(const wchar *ArcName, const wchar *fmt, ...) {
+}
 #else
-void Log(const wchar *ArcName,const wchar *fmt,...);
+void Log(const wchar *ArcName, const wchar *fmt, ...);
 #endif
 
 #endif

@@ -4,23 +4,19 @@
 #include "os.hpp"
 #include "crypt.hpp"
 
-struct QuickOpenItem
-{
-  byte *Header;
-  size_t HeaderSize;
-  uint64 ArcPos;
-  QuickOpenItem *Next;
+struct QuickOpenItem {
+    byte *Header;
+    size_t HeaderSize;
+    uint64 ArcPos;
+    QuickOpenItem *Next;
 };
-
 
 class Archive;
 class RawRead;
 
-class QuickOpen
-{
-  private:
+class QuickOpen {
+   private:
     void Close();
-
 
     uint ReadBuffer();
     bool ReadRaw(RawRead &Raw);
@@ -31,11 +27,11 @@ class QuickOpen
 
     QuickOpenItem *ListStart;
     QuickOpenItem *ListEnd;
-    
-    byte *Buf; // Read quick open data here.
-    static const size_t MaxBufSize=0x10000; // Buf size, must be multiple of CRYPT_BLOCK_SIZE.
-    size_t CurBufSize; // Current size of buffered data in write mode.
-#ifndef RAR_NOCRYPT // For shell extension.
+
+    byte *Buf;                                // Read quick open data here.
+    static const size_t MaxBufSize = 0x10000; // Buf size, must be multiple of CRYPT_BLOCK_SIZE.
+    size_t CurBufSize;                        // Current size of buffered data in write mode.
+#ifndef RAR_NOCRYPT                           // For shell extension.
     CryptData Crypt;
 #endif
 
@@ -49,15 +45,19 @@ class QuickOpen
     std::vector<byte> LastReadHeader;
     uint64 LastReadHeaderPos;
     uint64 SeekPos;
-    bool UnsyncSeekPos;  // QOpen SeekPos does not match an actual file pointer.
-  public:
+    bool UnsyncSeekPos; // QOpen SeekPos does not match an actual file pointer.
+   public:
     QuickOpen();
     ~QuickOpen();
-    void Init(Archive *Arc,bool WriteMode);
+    void Init(Archive *Arc, bool WriteMode);
     void Load(uint64 BlockPos);
-    void Unload() { Loaded=false; }
-    bool Read(void *Data,size_t Size,size_t &Result);
-    bool Seek(int64 Offset,int Method);
+
+    void Unload() {
+        Loaded = false;
+    }
+
+    bool Read(void *Data, size_t Size, size_t &Result);
+    bool Seek(int64 Offset, int Method);
     bool Tell(int64 *Pos);
 };
 

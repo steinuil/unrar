@@ -7,56 +7,51 @@
 #include "rs16.hpp"
 #include "threadpool.hpp"
 
-#define REV5_SIGN      "Rar!\x1aRev"
-#define REV5_SIGN_SIZE             8
+#define REV5_SIGN "Rar!\x1aRev"
+#define REV5_SIGN_SIZE 8
 
-class RecVolumes3
-{
-  private:
+class RecVolumes3 {
+   private:
     File *SrcFile[256];
     std::vector<byte> Buf;
 
 #ifdef RAR_SMP
     ThreadPool *RSThreadPool;
 #endif
-  public:
-    RecVolumes3(CommandData *Cmd,bool TestOnly);
+   public:
+    RecVolumes3(CommandData *Cmd, bool TestOnly);
     ~RecVolumes3();
-    void Make(CommandData *Cmd,std::wstring ArcName);
-    bool Restore(CommandData *Cmd,const std::wstring &Name,bool Silent);
-    void Test(CommandData *Cmd,const std::wstring &Name);
+    void Make(CommandData *Cmd, std::wstring ArcName);
+    bool Restore(CommandData *Cmd, const std::wstring &Name, bool Silent);
+    void Test(CommandData *Cmd, const std::wstring &Name);
 };
 
-
-struct RecVolItem
-{
-  File *f;
-  std::wstring Name;
-  uint CRC;
-  uint64 FileSize;
-  bool New;   // Newly created RAR volume.
-  bool Valid; // If existing RAR volume is valid.
+struct RecVolItem {
+    File *f;
+    std::wstring Name;
+    uint CRC;
+    uint64 FileSize;
+    bool New;   // Newly created RAR volume.
+    bool Valid; // If existing RAR volume is valid.
 };
-
 
 class RecVolumes5;
-struct RecRSThreadData
-{
-  RecVolumes5 *RecRSPtr;
-  RSCoder16 *RS;
-  bool Encode;
-  uint DataNum;
-  const byte *Data;
-  size_t StartPos;
-  size_t Size;
+
+struct RecRSThreadData {
+    RecVolumes5 *RecRSPtr;
+    RSCoder16 *RS;
+    bool Encode;
+    uint DataNum;
+    const byte *Data;
+    size_t StartPos;
+    size_t Size;
 };
 
-class RecVolumes5
-{
-  private:
-    void ProcessRS(CommandData *Cmd,uint DataNum,const byte *Data,uint MaxRead,bool Encode);
-    void ProcessRS(CommandData *Cmd,uint MaxRead,bool Encode);
-    uint ReadHeader(File *RecFile,bool FirstRev);
+class RecVolumes5 {
+   private:
+    void ProcessRS(CommandData *Cmd, uint DataNum, const byte *Data, uint MaxRead, bool Encode);
+    void ProcessRS(CommandData *Cmd, uint MaxRead, bool Encode);
+    uint ReadHeader(File *RecFile, bool FirstRev);
 
     std::vector<RecVolItem> RecItems;
 
@@ -67,28 +62,29 @@ class RecVolumes5
     byte *Buf;            // Store ECC or recovered data here, aligned for SSE.
     size_t RecBufferSize; // Buffer area allocated for single volume.
 
-    uint DataCount;   // Number of archives.
-    uint RecCount;    // Number of recovery volumes.
-    uint TotalCount;  // Total number of archives and recovery volumes.
+    uint DataCount;  // Number of archives.
+    uint RecCount;   // Number of recovery volumes.
+    uint TotalCount; // Total number of archives and recovery volumes.
 
-    bool *ValidFlags; // Volume validity flags for recovering.
+    bool *ValidFlags;    // Volume validity flags for recovering.
     uint MissingVolumes; // Number of missing or bad RAR volumes.
 
 #ifdef RAR_SMP
     ThreadPool *RecThreadPool;
 #endif
-    uint MaxUserThreads; // Maximum number of threads defined by user.
+    uint MaxUserThreads;         // Maximum number of threads defined by user.
     RecRSThreadData *ThreadData; // Array to store thread parameters.
-  public: // 'public' only because called from thread functions.
+   public:                       // 'public' only because called from thread functions.
     void ProcessAreaRS(RecRSThreadData *td);
-  public:
-    RecVolumes5(CommandData *Cmd,bool TestOnly);
+
+   public:
+    RecVolumes5(CommandData *Cmd, bool TestOnly);
     ~RecVolumes5();
-    bool Restore(CommandData *Cmd,const std::wstring &Name,bool Silent);
-    void Test(CommandData *Cmd,const std::wstring &Name);
+    bool Restore(CommandData *Cmd, const std::wstring &Name, bool Silent);
+    void Test(CommandData *Cmd, const std::wstring &Name);
 };
 
-bool RecVolumesRestore(CommandData *Cmd,const std::wstring &Name,bool Silent);
-void RecVolumesTest(CommandData *Cmd,Archive *Arc,const std::wstring &Name);
+bool RecVolumesRestore(CommandData *Cmd, const std::wstring &Name, bool Silent);
+void RecVolumesTest(CommandData *Cmd, Archive *Arc, const std::wstring &Name);
 
 #endif

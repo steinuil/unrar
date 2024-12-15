@@ -3,12 +3,9 @@
 #include "uicommon.cpp"
 
 #ifdef SILENT
-#include "uisilent.cpp"
+#    include "uisilent.cpp"
 #else
 
-
-
-
-#include "uiconsole.cpp"
+#    include "uiconsole.cpp"
 
 #endif

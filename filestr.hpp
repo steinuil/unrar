@@ -6,16 +6,16 @@
 #include "strlist.hpp"
 
 bool ReadTextFile(
-  const std::wstring &Name,
-  StringList *List,
-  bool Config,
-  bool AbortOnError=false,
-  RAR_CHARSET SrcCharset=RCH_DEFAULT,
-  bool Unquote=false,
-  bool SkipComments=false,
-  bool ExpandEnvStr=false
+    const std::wstring &Name,
+    StringList *List,
+    bool Config,
+    bool AbortOnError = false,
+    RAR_CHARSET SrcCharset = RCH_DEFAULT,
+    bool Unquote = false,
+    bool SkipComments = false,
+    bool ExpandEnvStr = false
 );
 
-RAR_CHARSET DetectTextEncoding(const byte *Data,size_t DataSize);
+RAR_CHARSET DetectTextEncoding(const byte *Data, size_t DataSize);
 
 #endif

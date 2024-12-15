@@ -7,7 +7,7 @@
 #include "rdwrfn.hpp"
 
 #ifdef USE_QOPEN
-#include "qopen.hpp"
+#    include "qopen.hpp"
 #endif
 
 // Forward declaration to appease clangd
@@ -17,38 +17,43 @@ class PPack;
 class RawRead;
 class RawWrite;
 
-enum NOMODIFY_FLAGS 
-{
-  NMDF_ALLOWLOCK=1,NMDF_ALLOWANYVOLUME=2,NMDF_ALLOWFIRSTVOLUME=4
+enum NOMODIFY_FLAGS {
+    NMDF_ALLOWLOCK = 1,
+    NMDF_ALLOWANYVOLUME = 2,
+    NMDF_ALLOWFIRSTVOLUME = 4
 };
 
-enum RARFORMAT {RARFMT_NONE,RARFMT14,RARFMT15,RARFMT50,RARFMT_FUTURE};
+enum RARFORMAT {
+    RARFMT_NONE,
+    RARFMT14,
+    RARFMT15,
+    RARFMT50,
+    RARFMT_FUTURE
+};
 
-enum ADDSUBDATA_FLAGS
-{
-  ASDF_SPLIT          = 1, // Allow to split archive just before header if necessary.
-  ASDF_COMPRESS       = 2, // Allow to compress data following subheader.
-  ASDF_CRYPT          = 4, // Encrypt data after subheader if password is set.
-  ASDF_CRYPTIFHEADERS = 8  // Encrypt data after subheader only in -hp mode.
+enum ADDSUBDATA_FLAGS {
+    ASDF_SPLIT = 1,         // Allow to split archive just before header if necessary.
+    ASDF_COMPRESS = 2,      // Allow to compress data following subheader.
+    ASDF_CRYPT = 4,         // Encrypt data after subheader if password is set.
+    ASDF_CRYPTIFHEADERS = 8 // Encrypt data after subheader only in -hp mode.
 };
 
 // RAR5 headers must not exceed 2 MB.
 #define MAX_HEADER_SIZE_RAR5 0x200000
 
-class Archive:public File
-{
-  private:
+class Archive : public File {
+   private:
     void UpdateLatestTime(FileHeader *CurBlock);
     void ConvertNameCase(std::wstring &Name);
     void ConvertFileHeader(FileHeader *hd);
     size_t ReadHeader14();
     size_t ReadHeader15();
     size_t ReadHeader50();
-    void ProcessExtra50(RawRead *Raw,size_t ExtraSize,const BaseBlock *bb);
+    void ProcessExtra50(RawRead *Raw, size_t ExtraSize, const BaseBlock *bb);
     void RequestArcPassword(RarCheckPassword *SelPwd);
     void UnexpEndArcMsg();
     void BrokenHeaderMsg();
-    void UnkEncVerMsg(const std::wstring &Name,const std::wstring &Info);
+    void UnkEncVerMsg(const std::wstring &Name, const std::wstring &Info);
     bool DoGetComment(std::wstring &CmtData);
     bool ReadCommentData(std::wstring &CmtData);
 
@@ -59,7 +64,6 @@ class Archive:public File
     bool DummyCmd;
     CommandData *Cmd;
 
-
     RarTime LatestTime;
     int LastReadBlock;
     HEADER_TYPE CurHeaderType;
@@ -69,10 +73,10 @@ class Archive:public File
     QuickOpen QOpen;
     bool ProhibitQOpen;
 #endif
-  public:
-    Archive(CommandData *InitCmd=NULL);
+   public:
+    Archive(CommandData *InitCmd = NULL);
     ~Archive();
-    static RARFORMAT IsSignature(const byte *D,size_t Size);
+    static RARFORMAT IsSignature(const byte *D, size_t Size);
     bool IsArchive(bool EnableBroken);
     size_t SearchBlock(HEADER_TYPE HeaderType);
     size_t SearchSubBlock(const wchar *Type);
@@ -91,21 +95,36 @@ class Archive:public File
     void VolSubtractHeaderSize(size_t SubSize);
     uint FullHeaderSize(size_t Size);
     int64 GetStartPos();
-    void AddSubData(const byte *SrcData,uint64 DataSize,File *SrcFile,
-         const wchar *Name,uint Flags);
-    bool ReadSubData(std::vector<byte> *UnpData,File *DestFile,bool TestMode);
-    HEADER_TYPE GetHeaderType() {return CurHeaderType;}
-    CommandData* GetCommandData() {return Cmd;}
-    void SetSilentOpen(bool Mode) {SilentOpen=Mode;}
+    void
+    AddSubData(const byte *SrcData, uint64 DataSize, File *SrcFile, const wchar *Name, uint Flags);
+    bool ReadSubData(std::vector<byte> *UnpData, File *DestFile, bool TestMode);
+
+    HEADER_TYPE GetHeaderType() {
+        return CurHeaderType;
+    }
+
+    CommandData *GetCommandData() {
+        return Cmd;
+    }
+
+    void SetSilentOpen(bool Mode) {
+        SilentOpen = Mode;
+    }
 #ifdef USE_QOPEN
-    bool Open(const std::wstring &Name,uint Mode=FMF_READ) override;
-    int Read(void *Data,size_t Size) override;
-    void Seek(int64 Offset,int Method) override;
+    bool Open(const std::wstring &Name, uint Mode = FMF_READ) override;
+    int Read(void *Data, size_t Size) override;
+    void Seek(int64 Offset, int Method) override;
     int64 Tell() override;
-    void QOpenUnload() {QOpen.Unload();}
-    void SetProhibitQOpen(bool Mode) {ProhibitQOpen=Mode;}
+
+    void QOpenUnload() {
+        QOpen.Unload();
+    }
+
+    void SetProhibitQOpen(bool Mode) {
+        ProhibitQOpen = Mode;
+    }
 #endif
-    static uint64 GetWinSize(uint64 Size,uint &Flags);
+    static uint64 GetWinSize(uint64 Size, uint &Flags);
 
     // Needed to see wstring based Open from File. Otherwise compiler finds
     // Open in Archive and doesn't check the base class overloads.
@@ -160,6 +179,5 @@ class Archive:public File
 
     std::wstring FirstVolumeName;
 };
-
 
 #endif

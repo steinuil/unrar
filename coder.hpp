@@ -9,10 +9,8 @@ class Unpack;
  *  Contents: 'Carryless rangecoder' by Dmitry Subbotin                     *
  ****************************************************************************/
 
-
-class RangeCoder
-{
-  public:
+class RangeCoder {
+   public:
     void InitDecoder(Unpack *UnpackRead);
     inline int GetCurrentCount();
     inline uint GetCurrentShiftCount(uint SHIFT);
@@ -21,9 +19,9 @@ class RangeCoder
     inline byte GetChar();
 
     uint low, code, range;
-    struct SUBRANGE 
-    {
-      uint LowCount, HighCount, scale;
+
+    struct SUBRANGE {
+        uint LowCount, HighCount, scale;
     } SubRange;
 
     Unpack *UnpackRead;
