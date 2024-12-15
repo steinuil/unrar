@@ -11,8 +11,9 @@ static bool UnixSymlink(CommandData *Cmd,const std::string &Target,const wchar *
 
   std::string LinkNameA;
   WideToChar(LinkName,LinkNameA);
-  if (symlink(Target.c_str(),LinkNameA.c_str())==-1) // Error.
+  if (symlink(Target.c_str(),LinkNameA.c_str())==-1) 
   {
+// Error.
     if (errno==EEXIST)
       uiMsg(UIERROR_ULINKEXIST,LinkName);
     else

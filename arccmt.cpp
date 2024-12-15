@@ -114,8 +114,9 @@ bool Archive::DoGetComment(std::wstring &CmtData)
       return false;
     std::vector<byte> CmtRaw(CmtLength);
     int ReadSize=Read(CmtRaw.data(),CmtLength);
-    if (ReadSize>=0 && (uint)ReadSize<CmtLength) // Comment is shorter than declared.
+    if (ReadSize>=0 && (uint)ReadSize<CmtLength) 
     {
+// Comment is shorter than declared.
       CmtLength=ReadSize;
       CmtRaw.resize(CmtLength);
     }
@@ -169,8 +170,9 @@ void Archive::ViewComment()
   if (Cmd->DisableComment)
     return;
   std::wstring CmtBuf;
-  if (GetComment(CmtBuf)) // In GUI too, so "Test" command detects broken comments.
+  if (GetComment(CmtBuf)) 
   {
+// In GUI too, so "Test" command detects broken comments.
     size_t CmtSize=CmtBuf.size();
     auto EndPos=CmtBuf.find(0x1A);
     if (EndPos!=std::wstring::npos)

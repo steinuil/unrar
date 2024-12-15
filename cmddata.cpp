@@ -64,7 +64,8 @@ void CommandData::ParseCommandLine(bool Preprocess,int argc, char *argv[])
   {
     if (!GetCmdParam(CmdLine,Pos,Param))
       break;
-    if (!FirstParam) // First parameter is the executable name.
+    if (!FirstParam) 
+// First parameter is the executable name.
       if (Preprocess)
         PreprocessArg(Param.data());
       else
@@ -107,8 +108,9 @@ void CommandData::ParseArg(const wchar *Arg)
       // 'S' can contain SFX name, which case is important in Unix.
       if (Command[0]!='I' && Command[0]!='S')
         wcsupper(Command);
-      if (Command[0]=='P') // Enforce -idq for print command.
+      if (Command[0]=='P') 
       {
+// Enforce -idq for print command.
         MsgStream=MSG_ERRONLY;
         SetConsoleMsgStream(MSG_ERRONLY);
       }
@@ -209,7 +211,8 @@ void CommandData::PreprocessArg(const wchar *Arg)
   if (IsSwitch(Arg[0]) && !NoMoreSwitches)
   {
     Arg++;
-    if (Arg[0]=='-' && Arg[1]==0) // Switch "--".
+    if (Arg[0]=='-' && Arg[1]==0) 
+// Switch "--".
       NoMoreSwitches=true;
     if (wcsicomp(Arg,L"cfg-")==0)
       ProcessSwitch(Arg);
@@ -498,8 +501,9 @@ void CommandData::ProcessSwitch(const wchar *Switch)
         EmailTo=Switch[4]!=0 ? Switch+4:L"@";
         break;
       }
-      if (wcsicomp(Switch+1,L"M")==0) // For compatibility with pre-WinRAR 6.0 -im syntax. Replaced with -idv.
+      if (wcsicomp(Switch+1,L"M")==0) 
       {
+// For compatibility with pre-WinRAR 6.0 -im syntax. Replaced with -idv.
         VerboseOutput=true;
         break;
       }
@@ -647,7 +651,7 @@ void CommandData::ProcessSwitch(const wchar *Switch)
             // 2023.07.22: For 4 GB and less we also check that it is power of 2,
             // so archives are compatible with RAR 5.0+.
             // We allow Size>PACK_MAX_DICT here, so we can use -md[x] to unpack
-            // archives created by future versions with higher PACK_MAX_DICTþ
+            // archives created by future versions with higher PACK_MAX_DICTï¿½
             uint Flags;
             if ((Size=Archive::GetWinSize(Size,Flags))==0 ||
                 Size<=0x100000000ULL && !IsPow2(Size))

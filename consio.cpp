@@ -269,8 +269,10 @@ bool getwstr(std::wstring &str)
 #if defined(_WIN_ALL)
   // fgetws does not work well with non-English text in Windows,
   // so we do not use it.
-  if (StdinRedirected) // ReadConsole does not work if redirected.
+  if (StdinRedirected) 
+
   {
+// ReadConsole does not work if redirected.
     // fgets does not work well with pipes in Windows in our test.
     // Let's use files.
     std::vector<char> StrA(MaxRead*4);  // Up to 4 UTF-8 characters per wchar_t.

@@ -108,8 +108,9 @@ bool RSCoder::Decode(byte *Data,int DataSize,int *EraLoc,int EraSize)
   if (AllZeroes)
     return(true);
 
-  if (!FirstBlockDone) // Do things which we need to do once for all data.
+  if (!FirstBlockDone) 
   {
+// Do things which we need to do once for all data.
     FirstBlockDone=true;
 
     // Calculate the error locator polynomial.
@@ -128,8 +129,9 @@ bool RSCoder::Decode(byte *Data,int DataSize,int *EraLoc,int EraSize)
       int Sum=0;
       for (int B=0;B<ParSize+1;B++)
         Sum^=gfMult(gfExp[(B*Root)%MAXPAR],ELPol[B]);
-      if (Sum==0) // Root found.
+      if (Sum==0) 
       {
+// Root found.
         ErrorLocs[ErrCount]=MAXPAR-Root; // Location of error.
 
         // Calculate the denominator for every error location.

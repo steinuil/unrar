@@ -317,8 +317,9 @@ void WideToUtf(const wchar *Src,char *Dest,size_t DestSize)
       }
       else
       {
-        if (c>=0xd800 && c<=0xdbff && *Src>=0xdc00 && *Src<=0xdfff) // Surrogate pair.
+        if (c>=0xd800 && c<=0xdbff && *Src>=0xdc00 && *Src<=0xdfff) 
         {
+// Surrogate pair.
           c=((c-0xd800)<<10)+(*Src-0xdc00)+0x10000;
           Src++;
         }
@@ -357,8 +358,9 @@ void WideToUtf(const std::wstring &Src,std::string &Dest)
       }
       else
       {
-        if (c>=0xd800 && c<=0xdbff && I<Src.size() && Src[I]>=0xdc00 && Src[I]<=0xdfff) // Surrogate pair.
+        if (c>=0xd800 && c<=0xdbff && I<Src.size() && Src[I]>=0xdc00 && Src[I]<=0xdfff) 
         {
+// Surrogate pair.
           c=((c-0xd800)<<10)+(Src[I]-0xdc00)+0x10000;
           I++;
         }
@@ -392,7 +394,8 @@ size_t WideToUtfSize(const wchar *Src)
       if (*Src<0x800)
         Size+=2;
       else
-        if ((uint)*Src<0x10000) //(uint) to avoid Clang/win "always true" warning for 16-bit wchar_t.
+//(uint) to avoid Clang/win "always true" warning for 16-bit wchar_t.
+        if ((uint)*Src<0x10000) 
         {
           if (Src[0]>=0xd800 && Src[0]<=0xdbff && Src[1]>=0xdc00 && Src[1]<=0xdfff)
           {
@@ -403,7 +406,8 @@ size_t WideToUtfSize(const wchar *Src)
             Size+=3;
         }
         else
-          if ((uint)*Src<0x200000) //(uint) to avoid Clang/win "always true" warning for 16-bit wchar_t.
+//(uint) to avoid Clang/win "always true" warning for 16-bit wchar_t.
+          if ((uint)*Src<0x200000) 
             Size+=4;
   return Size+1; // Include terminating zero.
 }
@@ -463,13 +467,15 @@ bool UtfToWide(const char *Src,wchar *Dest,size_t DestSize)
     {
       if (--dsize<0)
         break;
-      if (d>0x10ffff) // UTF-8 must end at 0x10ffff according to RFC 3629.
+      if (d>0x10ffff) 
       {
+// UTF-8 must end at 0x10ffff according to RFC 3629.
         Success=false;
         continue;
       }
-      if (sizeof(*Dest)==2) // Use the surrogate pair.
+      if (sizeof(*Dest)==2) 
       {
+// Use the surrogate pair.
         *(Dest++)=((d-0x10000)>>10)+0xd800;
         *(Dest++)=(d&0x3ff)+0xdc00;
       }
@@ -533,13 +539,15 @@ bool UtfToWide(const char *Src,std::wstring &Dest)
           }
     if (d>0xffff)
     {
-      if (d>0x10ffff) // UTF-8 must end at 0x10ffff according to RFC 3629.
+      if (d>0x10ffff) 
       {
+// UTF-8 must end at 0x10ffff according to RFC 3629.
         Success=false;
         continue;
       }
-      if (sizeof(wchar_t)==2) // Use the surrogate pair.
+      if (sizeof(wchar_t)==2) 
       {
+// Use the surrogate pair.
         Dest.push_back( ((d-0x10000)>>10)+0xd800 );
         Dest.push_back( (d&0x3ff)+0xdc00 );
       }
@@ -805,8 +813,9 @@ int64 atoilw(const std::wstring &s)
 {
   bool sign=false;
   size_t Pos=0;
-  if (s[Pos]=='-') // We do use signed integers here, for example, in GUI SFX.
+  if (s[Pos]=='-') 
   {
+// We do use signed integers here, for example, in GUI SFX.
     Pos++;
     sign=true;
   }

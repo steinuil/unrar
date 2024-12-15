@@ -90,7 +90,8 @@ void blake2sp_update( blake2sp_state *S, const byte *in, size_t inlen )
 #ifdef RAR_SMP
   uint ThreadNumber = inlen < 0x1000 ? 1 : S->MaxThreads;
   
-  if (ThreadNumber==6 || ThreadNumber==7) // 6 and 7 threads work slower than 4 here.
+  if (ThreadNumber==6 || ThreadNumber==7) 
+// 6 and 7 threads work slower than 4 here.
     ThreadNumber=4;
 #else
   uint ThreadNumber=1;
@@ -117,7 +118,8 @@ void blake2sp_update( blake2sp_state *S, const byte *in, size_t inlen )
       id__++;
     }
 #ifdef RAR_SMP
-    if (S->ThPool!=NULL) // Can be NULL in -mt1 mode.
+    if (S->ThPool!=NULL) 
+// Can be NULL in -mt1 mode.
       S->ThPool->WaitDone();
 #endif // RAR_SMP
   }

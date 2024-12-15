@@ -521,7 +521,8 @@ inline bool RARPPM_CONTEXT::decodeSymbol2(ModelPPM *Model)
     while ((HiCnt += p->Freq) <= count) 
     {
       pps++;
-      if (pps>=ps+ASIZE(ps)) // Extra safety check.
+      if (pps>=ps+ASIZE(ps)) 
+// Extra safety check.
         return false;
       p=*pps;
     }
@@ -539,7 +540,8 @@ inline bool RARPPM_CONTEXT::decodeSymbol2(ModelPPM *Model)
     // "array subscript -1 is outside array bounds" warning in some compilers.
     do 
     { 
-      if (pps>=ps+ASIZE(ps)) // Extra safety check.
+      if (pps>=ps+ASIZE(ps)) 
+// Extra safety check.
         return false;
       Model->CharMask[(*pps)->Symbol]=Model->EscCount; 
       pps++;

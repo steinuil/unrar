@@ -6,8 +6,9 @@
 inline int Unpack::SafePPMDecodeChar()
 {
   int Ch=PPM.DecodeChar();
-  if (Ch==-1)              // Corrupt PPM data found.
+  if (Ch==-1)              
   {
+// Corrupt PPM data found.
     PPM.CleanUp();         // Reset possibly corrupt PPM data structures.
     UnpBlockType=BLOCK_LZ; // Set faster and more fail proof LZ mode.
   }
@@ -77,8 +78,9 @@ void Unpack::Unpack29(bool Solid)
       // because sometimes even the inline function can introduce
       // some additional penalty.
       int Ch=PPM.DecodeChar();
-      if (Ch==-1)              // Corrupt PPM data found.
+      if (Ch==-1)              
       {
+// Corrupt PPM data found.
         PPM.CleanUp();         // Reset possibly corrupt PPM data structures.
         UnpBlockType=BLOCK_LZ; // Set faster and more fail proof LZ mode.
         break;
@@ -86,24 +88,29 @@ void Unpack::Unpack29(bool Solid)
       if (Ch==PPMEscChar)
       {
         int NextCh=SafePPMDecodeChar();
-        if (NextCh==0)  // End of PPM encoding.
+        if (NextCh==0)  
         {
+// End of PPM encoding.
           if (!ReadTables30())
             break;
           continue;
         }
-        if (NextCh==-1) // Corrupt PPM data found.
+        if (NextCh==-1) 
+// Corrupt PPM data found.
           break;
-        if (NextCh==2)  // End of file in PPM mode.
+        if (NextCh==2)  
+// End of file in PPM mode.
           break;
-        if (NextCh==3)  // Read VM code.
+        if (NextCh==3)  
+// Read VM code.
         {
           if (!ReadVMCodePPM())
             break;
           continue;
         }
-        if (NextCh==4) // LZ inside of PPM.
+        if (NextCh==4) 
         {
+// LZ inside of PPM.
           unsigned int Distance=0,Length;
           bool Failed=false;
           for (int I=0;I<4 && !Failed;I++)
@@ -123,8 +130,9 @@ void Unpack::Unpack29(bool Solid)
           CopyString(Length+32,Distance+2);
           continue;
         }
-        if (NextCh==5) // One byte distance match (RLE) inside of PPM.
+        if (NextCh==5) 
         {
+// One byte distance match (RLE) inside of PPM.
           int Length=SafePPMDecodeChar();
           if (Length==-1)
             break;
@@ -389,8 +397,9 @@ bool Unpack::AddVMCode(uint FirstByte,byte *Code,uint CodeSize)
   UnpackFilter30 *StackFilter=new UnpackFilter30; // New filter for PrgStack.
 
   UnpackFilter30 *Filter;
-  if (NewFilter) // New filter code, never used before since VM reset.
+  if (NewFilter) 
   {
+// New filter code, never used before since VM reset.
     if (FiltPos>MAX3_UNPACK_FILTERS)
     {
       // Too many different filters, corrupt archive.
@@ -463,8 +472,9 @@ bool Unpack::AddVMCode(uint FirstByte,byte *Code,uint CodeSize)
   memset(StackFilter->Prg.InitR,0,sizeof(StackFilter->Prg.InitR));
   StackFilter->Prg.InitR[4]=StackFilter->BlockLength;
 
-  if ((FirstByte & 0x10)!=0) // Set registers to optional parameters if any.
+  if ((FirstByte & 0x10)!=0) 
   {
+// Set registers to optional parameters if any.
     uint InitMask=VMCodeInp.fgetbits()>>9;
     VMCodeInp.faddbits(7);
     for (uint I=0;I<7;I++)

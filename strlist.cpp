@@ -120,8 +120,9 @@ wchar* StringList::GetString()
 
 bool StringList::GetString(wchar **Str)
 {
-  if (CurPos>=StringData.size()) // No more strings left unprocessed.
+  if (CurPos>=StringData.size()) 
   {
+// No more strings left unprocessed.
     if (Str!=NULL)
       *Str=NULL;
     return false;

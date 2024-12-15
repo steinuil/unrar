@@ -39,7 +39,8 @@ bool ReadTextFile(
   while ((ReadSize=SrcFile.Read(&Data[DataSize],ReadBlock))!=0)
   {
     DataSize+=ReadSize;
-    Data.resize(DataSize+ReadBlock); // Always have ReadBlock available for next data.
+// Always have ReadBlock available for next data.
+    Data.resize(DataSize+ReadBlock); 
   }
   // Set to really read size, so we can zero terminate it correctly.
   Data.resize(DataSize);
@@ -66,9 +67,11 @@ bool ReadTextFile(
 
   if (SrcCharset==RCH_UNICODE)
   {
-    size_t Start=2; // Skip byte order mark.
-    if (!LittleEndian && !BigEndian) // No byte order mask.
+    size_t Start=2; 
+// Skip byte order mark.
+    if (!LittleEndian && !BigEndian) 
     {
+// No byte order mask.
       Start=0;
       LittleEndian=1;
     }
@@ -123,8 +126,9 @@ bool ReadTextFile(
 
     bool Expanded=false;
 #if defined(_WIN_ALL)
-    if (ExpandEnvStr && *CurStr=='%') // Expand environment variables in Windows.
+    if (ExpandEnvStr && *CurStr=='%') 
     {
+// Expand environment variables in Windows.
       std::wstring ExpName=CurStr;
       ExpandEnvironmentStr(ExpName);
       if (!ExpName.empty())

@@ -16,7 +16,8 @@ QuickOpen::~QuickOpen()
 
 void QuickOpen::Init(Archive *Arc,bool WriteMode)
 {
-  if (Arc!=NULL) // Unless called from constructor.
+  if (Arc!=NULL) 
+// Unless called from constructor.
     Close();
 
   QuickOpen::Arc=Arc;
@@ -234,8 +235,9 @@ uint QuickOpen::ReadBuffer()
 // Fill RawRead object from buffer.
 bool QuickOpen::ReadRaw(RawRead &Raw)
 {
-  if (MaxBufSize-ReadBufPos<0x100) // We are close to end of buffer.
+  if (MaxBufSize-ReadBufPos<0x100) 
   {
+// We are close to end of buffer.
     // Ensure that we have enough data to read CRC and header size.
     size_t DataLeft=ReadBufSize-ReadBufPos;
     memcpy(Buf,Buf+ReadBufPos,DataLeft);
@@ -268,8 +270,9 @@ bool QuickOpen::ReadRaw(RawRead &Raw)
     Raw.Read(Buf+ReadBufPos,CurSizeToRead);
     ReadBufPos+=CurSizeToRead;
     SizeToRead-=int(CurSizeToRead);
-    if (SizeToRead>0) // We read the entire buffer and still need more data.
+    if (SizeToRead>0) 
     {
+// We read the entire buffer and still need more data.
       ReadBufPos=0;
       ReadBufSize=0;
       if (ReadBuffer()==0)
@@ -285,7 +288,8 @@ bool QuickOpen::ReadRaw(RawRead &Raw)
 bool QuickOpen::ReadNext()
 {
   RawRead Raw(NULL);
-  if (!ReadRaw(Raw)) // Read internal quick open header preceding stored block.
+  if (!ReadRaw(Raw)) 
+// Read internal quick open header preceding stored block.
     return false;
   uint Flags=(uint)Raw.GetV();
   uint64 Offset=Raw.GetV();

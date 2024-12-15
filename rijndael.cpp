@@ -104,8 +104,9 @@ void Rijndael::Init(bool Encrypt,const byte *key,uint keyLen,const byte * initVe
 #ifdef _MSC_VER
   int CPUInfo[4];
   __cpuid(CPUInfo, 0);
-  if (CPUInfo[0]>=1) // Check the maximum supported cpuid function.
+  if (CPUInfo[0]>=1) 
   {
+// Check the maximum supported cpuid function.
     __cpuid(CPUInfo, 1);
     AES_NI=(CPUInfo[2] & 0x2000000)!=0;
   }

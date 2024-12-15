@@ -65,7 +65,8 @@ void RecVolumesTest(CommandData *Cmd,Archive *Arc,const std::wstring &Name)
     while (Find.Next(&RecData))
     {
       size_t NumPos=GetVolNumPos(RecData.Name);
-      if (RecData.Name[NumPos]!='1') // Name must have "0...01" numeric part.
+      if (RecData.Name[NumPos]!='1') 
+// Name must have "0...01" numeric part.
         continue;
       bool FirstVol=true;
       while (NumPos>0 && IsDigit(RecData.Name[--NumPos]))
@@ -80,7 +81,8 @@ void RecVolumesTest(CommandData *Cmd,Archive *Arc,const std::wstring &Name)
         break;
       }
     }
-    if (RevName.empty()) // First .rev file not found.
+    if (RevName.empty()) 
+// First .rev file not found.
       return;
   }
   

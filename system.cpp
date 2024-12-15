@@ -130,7 +130,8 @@ bool ShutdownCheckAnother(bool Open)
   const wchar *EventName=L"rar -ioff";
   static HANDLE hEvent=NULL;
   bool Result=false; // Return false if no other RAR -ioff are running.
-  if (Open) // Create or open the event.
+  if (Open) 
+// Create or open the event.
     hEvent=CreateEvent(NULL,FALSE,FALSE,EventName);
   else
   {

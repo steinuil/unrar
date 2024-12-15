@@ -145,13 +145,16 @@ bool RarVM::ExecuteStandardFilter(VM_StandardFilters FilterType)
 
             // We check 0x80000000 bit instead of '< 0' comparison
             // not assuming int32 presence or uint size and endianness.
-            if ((Addr & 0x80000000)!=0)              // Addr<0
+// Addr<0
+            if ((Addr & 0x80000000)!=0)              
             {
-              if (((Addr+Offset) & 0x80000000)==0)   // Addr+Offset>=0
+// Addr+Offset>=0
+              if (((Addr+Offset) & 0x80000000)==0)   
                 RawPut4(Addr+FileSize,Data);
             }
             else
-              if (((Addr-FileSize) & 0x80000000)!=0) // Addr<FileSize
+// Addr<FileSize
+              if (((Addr-FileSize) & 0x80000000)!=0) 
                 RawPut4(Addr-Offset,Data);
             Data+=4;
             CurPos+=4;

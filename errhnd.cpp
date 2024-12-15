@@ -78,7 +78,8 @@ void ErrorHandler::AskRepeatRead(const std::wstring &FileName,bool &Ignore,bool 
       uiAskRepeatRead(FileName,Ignore,All,Retry,Quit);
       if (All)
         ReadErrIgnoreAll=Ignore=true;
-      if (Quit) // Disable shutdown if user select Quit in read error prompt.
+      if (Quit) 
+// Disable shutdown if user select Quit in read error prompt.
         DisableShutdown=true;
     }
     return;
@@ -120,7 +121,8 @@ bool ErrorHandler::AskRepeatWrite(const std::wstring &FileName,bool DiskFull)
     // need the matching system error message.
     SysErrMsg();
     bool Repeat=uiAskRepeatWrite(FileName,DiskFull);
-    if (!Repeat) // Disable shutdown if user pressed Cancel in error dialog.
+    if (!Repeat) 
+// Disable shutdown if user pressed Cancel in error dialog.
       DisableShutdown=true;
     return Repeat;
   }
@@ -336,7 +338,8 @@ void ErrorHandler::Throw(RAR_EXIT Code)
     return;
 #if !defined(SILENT)
   if (Code!=RARX_SUCCESS)
-    if (Code==RARX_USERERROR) // Do not write "aborted" when just displaying the online help.
+    if (Code==RARX_USERERROR) 
+// Do not write "aborted" when just displaying the online help.
       mprintf(L"\n"); // For consistency with other errors, which print the final "\n".
     else
       mprintf(L"\n%s\n",St(MProgAborted));

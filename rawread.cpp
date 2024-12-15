@@ -36,8 +36,9 @@ size_t RawRead::Read(size_t Size)
     // Data read for alignment and not processed yet.
     size_t DataLeft=FullSize-DataSize;
 
-    if (Size>DataLeft) // Need to read more than we already have.
+    if (Size>DataLeft) 
     {
+// Need to read more than we already have.
       size_t SizeToRead=Size-DataLeft;
       size_t AlignedReadSize=SizeToRead+((~SizeToRead+1) & CRYPT_BLOCK_MASK);
       Data.resize(FullSize+AlignedReadSize);

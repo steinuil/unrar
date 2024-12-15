@@ -193,8 +193,10 @@ bool ScanTree::GetFilteredMask()
 
   CurMask.erase(SlashPos);
 
-  if (!RelativeDrive) // Keep d: mask as is, not convert to d:\*
+  if (!RelativeDrive) 
   {
+// Keep d: mask as is, not convert to d:\*
+
     // We need to append "\*" both for -ep1 to work correctly and to
     // convert d:\* masks previously truncated to d: back to original form.
     AddEndSlash(CurMask);
@@ -253,8 +255,10 @@ SCAN_CODE ScanTree::FindProc(FindData *FD)
     return SCAN_NEXT;
   bool FastFindFile=false;
   
-  if (FindStack[Depth]==NULL) // No FindFile object for this depth yet.
+  if (FindStack[Depth]==NULL) 
   {
+// No FindFile object for this depth yet.
+
     bool Wildcards=IsWildcard(CurMask);
 
     // If we have a file name without wildcards, we can try to use

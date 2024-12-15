@@ -482,8 +482,9 @@ void RSEncode::DecodeBuf()
 
 void RecVolumes3::Test(CommandData *Cmd,const std::wstring &Name)
 {
-  if (!IsNewStyleRev(Name)) // RAR 3.0 name#_#_#.rev do not include CRC32.
+  if (!IsNewStyleRev(Name)) 
   {
+// RAR 3.0 name#_#_#.rev do not include CRC32.
     ErrHandler.UnknownMethodMsg(Name,Name);
     return;
   }

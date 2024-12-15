@@ -238,7 +238,8 @@ uint DataHash::gfExpCRC(uint N)
   uint R = 1; // Exponentiation result.
   while (N > 1)
   {
-    if ((N & 1)!=0)     // If N is odd.
+    if ((N & 1)!=0)     
+// If N is odd.
       R = gfMulCRC(R, S);
     S = gfMulCRC(S, S); // Next square.
     N >>= 1;

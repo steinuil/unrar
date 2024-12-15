@@ -74,7 +74,8 @@ size_t ConvertPath(const std::wstring *SrcPath,std::wstring *DestPath)
       else
         if (S[J]!='.')
           break;
-    if (I==DestPos) // If nothing was removed.
+// If nothing was removed.
+    if (I==DestPos) 
       break;
     DestPos=I;
   }
@@ -644,8 +645,9 @@ void ConvertNameToFull(const std::wstring &Src,std::wstring &Dest)
     }
 
     std::wstring LongName;
-    if (GetWinLongPath(Src,LongName)) // Failed with normal name, try long.
+    if (GetWinLongPath(Src,LongName)) 
     {
+// Failed with normal name, try long.
       Code=GetFullPathName(LongName.c_str(),0,NULL,NULL); // Get the buffer size.
       if (Code!=0)
       {
@@ -755,8 +757,9 @@ size_t VolNameToFirstName(const std::wstring &VolName,std::wstring &FirstName,bo
         N='0';
       }
       else
-        if (N=='0') // If we already set the rightmost '1' before.
+        if (N=='0') 
         {
+// If we already set the rightmost '1' before.
           VolNumStart=Pos+1; // Store the position of leftmost digit in volume number.
           break;
         }
@@ -1016,8 +1019,9 @@ bool GetWinLongPath(const std::wstring &Src,std::wstring &Dest)
   const std::wstring Prefix=L"\\\\?\\";
 
   bool FullPath=Src.size()>=3 && IsDriveLetter(Src) && IsPathDiv(Src[2]);
-  if (IsFullPath(Src)) // Paths in d:\path\name format.
+  if (IsFullPath(Src)) 
   {
+// Paths in d:\path\name format.
     if (IsDriveLetter(Src))
     {
       Dest=Prefix+Src; // "\\?\D:\very long path".
@@ -1038,8 +1042,9 @@ bool GetWinLongPath(const std::wstring &Src,std::wstring &Dest)
     if (!GetCurDir(CurDir))
       return false;
 
-    if (IsPathDiv(Src[0])) // Paths in \path\name format.
+    if (IsPathDiv(Src[0])) 
     {
+// Paths in \path\name format.
       Dest=Prefix+CurDir[0]+L':'+Src;  // Copy drive letter 'd:'.
       return true;
     }
@@ -1049,7 +1054,8 @@ bool GetWinLongPath(const std::wstring &Src,std::wstring &Dest)
       AddEndSlash(Dest);
 
       size_t Pos=0;
-      if (Src[0]=='.' && IsPathDiv(Src[1])) // Remove leading .\ in pathname.
+      if (Src[0]=='.' && IsPathDiv(Src[1])) 
+// Remove leading .\ in pathname.
         Pos=2;
 
       Dest+=Src.substr(Pos);
@@ -1063,7 +1069,8 @@ bool GetWinLongPath(const std::wstring &Src,std::wstring &Dest)
 // Convert Unix, OS X and Android decomposed chracters to Windows precomposed.
 void ConvertToPrecomposed(std::wstring &Name)
 {
-  if (WinNT()<WNT_VISTA) // MAP_PRECOMPOSED is not supported in XP.
+  if (WinNT()<WNT_VISTA) 
+// MAP_PRECOMPOSED is not supported in XP.
     return;
   int Size=FoldString(MAP_PRECOMPOSED,Name.c_str(),-1,NULL,0);
   if (Size<=0)

@@ -154,7 +154,8 @@ void CommandData::SetTimeFilters(const wchar *Mod,bool Before,bool Age)
     else
       TimeMods=true;
 
-  if (!TimeMods) // Assume 'm' if no modifiers are specified.
+  if (!TimeMods) 
+// Assume 'm' if no modifiers are specified.
     Mod=L"m";
 
   // Set the specified time for every modifier. Be sure to check *Mod!=0,
@@ -210,63 +211,81 @@ bool CommandData::TimeCheck(RarTime &ftm,RarTime &ftc,RarTime &fta)
 {
   bool FilterOR=false;
 
-  if (FileMtimeBefore.IsSet()) // Filter present.
-    if (ftm>=FileMtimeBefore) // Condition not matched.
+  if (FileMtimeBefore.IsSet()) 
+// Filter present.
+    if (ftm>=FileMtimeBefore) 
+// Condition not matched.
       if (FileMtimeBeforeOR) 
         FilterOR=true; // Not matched OR filter is present.
       else
         return true; // Exclude file in AND mode.
-    else  // Condition matched.
+    else  
+// Condition matched.
       if (FileMtimeBeforeOR) 
         return false; // Include file in OR mode.
 
-  if (FileMtimeAfter.IsSet()) // Filter present.
-    if (ftm<FileMtimeAfter) // Condition not matched.
+  if (FileMtimeAfter.IsSet()) 
+// Filter present.
+    if (ftm<FileMtimeAfter) 
+// Condition not matched.
       if (FileMtimeAfterOR) 
         FilterOR=true; // Not matched OR filter is present.
       else
         return true; // Exclude file in AND mode.
-    else  // Condition matched.
+    else  
+// Condition matched.
       if (FileMtimeAfterOR) 
         return false; // Include file in OR mode.
 
-  if (FileCtimeBefore.IsSet()) // Filter present.
-    if (ftc>=FileCtimeBefore) // Condition not matched.
+  if (FileCtimeBefore.IsSet()) 
+// Filter present.
+    if (ftc>=FileCtimeBefore) 
+// Condition not matched.
       if (FileCtimeBeforeOR) 
         FilterOR=true; // Not matched OR filter is present.
       else
         return true; // Exclude file in AND mode.
-    else  // Condition matched.
+    else  
+// Condition matched.
       if (FileCtimeBeforeOR) 
         return false; // Include file in OR mode.
 
-  if (FileCtimeAfter.IsSet()) // Filter present.
-    if (ftc<FileCtimeAfter) // Condition not matched.
+  if (FileCtimeAfter.IsSet()) 
+// Filter present.
+    if (ftc<FileCtimeAfter) 
+// Condition not matched.
       if (FileCtimeAfterOR) 
         FilterOR=true; // Not matched OR filter is present.
       else
         return true; // Exclude file in AND mode.
-    else  // Condition matched.
+    else  
+// Condition matched.
       if (FileCtimeAfterOR) 
         return false; // Include file in OR mode.
 
-  if (FileAtimeBefore.IsSet()) // Filter present.
-    if (fta>=FileAtimeBefore) // Condition not matched.
+  if (FileAtimeBefore.IsSet()) 
+// Filter present.
+    if (fta>=FileAtimeBefore) 
+// Condition not matched.
       if (FileAtimeBeforeOR) 
         FilterOR=true; // Not matched OR filter is present.
       else
         return true; // Exclude file in AND mode.
-    else  // Condition matched.
+    else  
+// Condition matched.
       if (FileAtimeBeforeOR) 
         return false; // Include file in OR mode.
 
-  if (FileAtimeAfter.IsSet()) // Filter present.
-    if (fta<FileAtimeAfter) // Condition not matched.
+  if (FileAtimeAfter.IsSet()) 
+// Filter present.
+    if (fta<FileAtimeAfter) 
+// Condition not matched.
       if (FileAtimeAfterOR) 
         FilterOR=true; // Not matched OR filter is present.
       else
         return true; // Exclude file in AND mode.
-    else  // Condition matched.
+    else  
+// Condition matched.
       if (FileAtimeAfterOR) 
         return false; // Include file in OR mode.
 
@@ -279,7 +298,8 @@ bool CommandData::TimeCheck(RarTime &ftm,RarTime &ftc,RarTime &fta)
 // Return 'true' if we need to exclude the file from processing.
 bool CommandData::SizeCheck(int64 Size)
 {
-  if (Size==INT64NDF) // If called from archive formats like bzip2, not storing the file size.
+  if (Size==INT64NDF) 
+// If called from archive formats like bzip2, not storing the file size.
     return false;
   if (FileSizeLess!=INT64NDF && Size>=FileSizeLess)
     return true;

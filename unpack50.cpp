@@ -264,11 +264,14 @@ bool Unpack::UnpReadBuf()
   int ReadCode=0;
   if (BitInput::MAX_SIZE!=DataSize)
     ReadCode=UnpIO->UnpRead(Inp.InBuf+DataSize,BitInput::MAX_SIZE-DataSize);
-  if (ReadCode>0) // Can be also -1.
+  if (ReadCode>0) 
+// Can be also -1.
     ReadTop+=ReadCode;
   ReadBorder=ReadTop-30;
   BlockHeader.BlockStart=Inp.InAddr;
-  if (BlockHeader.BlockSize!=-1) // '-1' means not defined yet.
+
+// '-1' means not defined yet.
+  if (BlockHeader.BlockSize!=-1) 
   {
     // We may need to quit from main extraction loop and read new block header
     // and trees earlier than data in input buffer ends.
@@ -325,8 +328,9 @@ void Unpack::UnpWriteBuf()
       }
       if (BlockLength<=WriteSizeLeft)
       {
-        if (BlockLength>0) // We set it to 0 also for invalid filters.
+        if (BlockLength>0) 
         {
+// We set it to 0 also for invalid filters.
           size_t BlockEnd=WrapUp(BlockStart+BlockLength);
 
           FilterSrcMemory.resize(BlockLength);
@@ -401,8 +405,10 @@ void Unpack::UnpWriteBuf()
   if (EmptyCount>0)
     Filters.resize(Filters.size()-EmptyCount);
 
-  if (!NotAllFiltersProcessed) // Only if all filters are processed.
+// Only if all filters are processed.
+  if (!NotAllFiltersProcessed) 
   {
+
     // Write data left after last filter.
     UnpWriteArea(WrittenBorder,UnpPtr);
     WrPtr=UnpPtr;
@@ -446,13 +452,17 @@ byte* Unpack::ApplyFilter(byte *Data,uint DataSize,UnpackFilter *Flt)
 
             // We check 0x80000000 bit instead of '< 0' comparison
             // not assuming int32 presence or uint size and endianness.
-            if ((Addr & 0x80000000)!=0)              // Addr<0
+
+// Addr<0
+            if ((Addr & 0x80000000)!=0)              
             {
-              if (((Addr+Offset) & 0x80000000)==0)   // Addr+Offset>=0
+// Addr+Offset>=0
+              if (((Addr+Offset) & 0x80000000)==0)   
                 RawPut4(Addr+FileSize,Data);
             }
             else
-              if (((Addr-FileSize) & 0x80000000)!=0) // Addr<FileSize
+// Addr<FileSize
+              if (((Addr-FileSize) & 0x80000000)!=0) 
                 RawPut4(Addr-Offset,Data);
 
             Data+=4;
@@ -473,7 +483,8 @@ byte* Unpack::ApplyFilter(byte *Data,uint DataSize,UnpackFilter *Flt)
         for (uint CurPos=0;CurPos+3<DataSize;CurPos+=4)
         {
           byte *D=Data+CurPos;
-          if (D[3]==0xeb) // BL command with '1110' (Always) condition.
+// BL command with '1110' (Always) condition.
+          if (D[3]==0xeb) 
           {
             uint Offset=D[0]+uint(D[1])*0x100+uint(D[2])*0x10000;
             Offset-=(FileOffset+CurPos)/4;

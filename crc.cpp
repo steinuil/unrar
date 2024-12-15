@@ -250,7 +250,8 @@ void TestCRC()
   const uint64 BufCount=5000;
   for (uint I=0;I<BufCount;I++)
     r32=CRC32(r32,Buf,BufSize);
-  if (r32!=0) // Otherwise compiler optimizer removes CRC calculation.
+  if (r32!=0) 
+// Otherwise compiler optimizer removes CRC calculation.
     mprintf(L"\nCRC32 speed: %llu MB/s",BufCount*CLOCKS_PER_SEC/(clock()-StartTime));
 
   StartTime=clock();
@@ -274,7 +275,8 @@ void TestCRC()
   r64=0xffffffffffffffff;
   for (uint I=0;I<BufCount;I++)
     r64=CRC64(r64,Buf,BufSize);
-  if (r64!=0) // Otherwise compiler optimizer removes CRC calculation.
+  if (r64!=0) 
+// Otherwise compiler optimizer removes CRC calculation.
     mprintf(L"\nCRC64 speed: %llu MB/s",BufCount*CLOCKS_PER_SEC/(clock()-StartTime));
 }
 #endif

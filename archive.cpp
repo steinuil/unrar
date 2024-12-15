@@ -174,8 +174,9 @@ bool Archive::IsArchive(bool EnableBroken)
     uiMsg(UIERROR_NEWRARFORMAT,FileName);
     return false;
   }
-  if (Format==RARFMT50) // RAR 5.0 signature is by one byte longer.
+  if (Format==RARFMT50) 
   {
+// RAR 5.0 signature is by one byte longer.
     if (Read(MarkHead.Mark+SIZEOF_MARKHEAD3,1)!=1 || MarkHead.Mark[SIZEOF_MARKHEAD3]!=0)
       return false;
     MarkHead.HeadSize=SIZEOF_MARKHEAD5;
@@ -213,9 +214,11 @@ bool Archive::IsArchive(bool EnableBroken)
   if (FailedHeaderDecryption && !EnableBroken)
     return false;
 
-  if (BrokenHeader || !StartFound) // Main archive header is corrupt or missing.
+  if (BrokenHeader || !StartFound) 
   {
-    if (!FailedHeaderDecryption) // If not reported a wrong password already.
+// Main archive header is corrupt or missing.
+    if (!FailedHeaderDecryption) 
+// If not reported a wrong password already.
       uiMsg(UIERROR_MHEADERBROKEN,FileName);
     if (!EnableBroken)
       return false;
@@ -254,7 +257,8 @@ bool Archive::IsArchive(bool EnableBroken)
           break;
         }
         else
-          if (HeaderType==HEAD_ENDARC) // Might happen if archive contains only a split service header.
+          if (HeaderType==HEAD_ENDARC) 
+// Might happen if archive contains only a split service header.
             break;
       SeekToNext();
     }

@@ -62,7 +62,8 @@ void FragmentedWindow::Init(size_t WinSize)
     MemSize[BlockNum]=TotalSize;
     BlockNum++;
   }
-  if (TotalSize<WinSize) // Not found enough free blocks.
+  if (TotalSize<WinSize) 
+// Not found enough free blocks.
     throw std::bad_alloc();
   LastAllocated=WinSize;
 }

@@ -224,7 +224,8 @@ bool RecVolumes5::Restore(CommandData *Cmd,const std::wstring &Name,bool Silent)
     if (ItemPos==-1)
       delete Vol; // Skip found file, it is not RAR or REV volume.
     else
-      if ((uint)ItemPos<RecItems.size()) // Check if found more REV than needed.
+// Check if found more REV than needed.
+      if ((uint)ItemPos<RecItems.size()) 
       {
         // Store found RAR or REV volume.
         RecVolItem *Item=&RecItems[ItemPos];
@@ -355,7 +356,8 @@ bool RecVolumes5::Restore(CommandData *Cmd,const std::wstring &Name,bool Silent)
 
   // Size of per file buffer.
   RecBufferSize=TotalBufferSize/MissingVolumes;
-  if ((RecBufferSize&1)==1) // Must be even for our RS16 codec.
+  if ((RecBufferSize&1)==1) 
+// Must be even for our RS16 codec.
     RecBufferSize--;
 #ifdef USE_SSE
   RecBufferSize&=~(SSE_ALIGNMENT-1); // Align for SSE.
@@ -380,7 +382,8 @@ bool RecVolumes5::Restore(CommandData *Cmd,const std::wstring &Name,bool Silent)
     for (uint I=0,J=DataCount;I<DataCount;I++)
     {
       uint VolNum=I;
-      if (!ValidFlags[I]) // If next RAR volume is missing or invalid.
+// If next RAR volume is missing or invalid.
+      if (!ValidFlags[I]) 
       {
         while (!ValidFlags[J]) // Find next valid REV volume.
           J++;
@@ -460,7 +463,8 @@ uint RecVolumes5::ReadHeader(File *RecFile,bool FirstRev)
   if ((CRC32(CalcCRC,Raw.GetDataPtr(),HeaderSize)^0xffffffff)!=BlockCRC)
     return 0;
 
-  if (Raw.Get1()!=1) // Version check.
+// Version check.
+  if (Raw.Get1()!=1) 
     return 0;
   DataCount=Raw.Get2();
   RecCount=Raw.Get2();

@@ -134,9 +134,11 @@ void RSCoder16::MakeDecoderMatrix()
   // Include rows only for broken data units and replace them by first
   // available valid recovery code rows.
   for (uint Flag=0, R=ND, Dest=0; Flag < ND; Flag++)
-    if (!ValidFlags[Flag]) // For every broken data unit.
+// For every broken data unit.
+    if (!ValidFlags[Flag]) 
     {
-      while (!ValidFlags[R]) // Find a valid recovery unit.
+// Find a valid recovery unit.
+      while (!ValidFlags[R]) 
         R++;
       for (uint J = 0; J < ND; J++) // And place its row to matrix.
         MX[Dest*ND + J] = gfInv( gfAdd(R,J) );
@@ -157,7 +159,8 @@ void RSCoder16::InvertDecoderMatrix()
   memset(MI, 0, ND * NE * sizeof(*MI)); // Initialize to identity matrix.
   for (uint Kr = 0, Kf = 0; Kr < NE; Kr++, Kf++)
   {
-    while (ValidFlags[Kf]) // Skip trivial rows.
+// Skip trivial rows.
+    while (ValidFlags[Kf]) 
       Kf++;
     MI[Kr * ND + Kf] = 1;  // Set diagonal 1.
   }
@@ -194,7 +197,8 @@ void RSCoder16::InvertDecoderMatrix()
     }
 
     for (uint I = 0; I < NE; I++)
-      if (I != Kr) // For all rows except containing the pivot cell.
+// For all rows except containing the pivot cell.
+      if (I != Kr) 
       {
         // Apply Gaussian elimination Mij -= Mkj * Mik / pivot.
         // Since pivot is already 1, it is reduced to Mij -= Mkj * Mik.
@@ -234,9 +238,11 @@ void RSCoder16::Process(const uint *Data, uint *Out)
     // Replace broken data units with first available valid recovery codes.
     // 'Data' array must contain recovery codes after data.
     for (uint I=0, R=ND, Dest=0; I < ND; I++)
-      if (!ValidFlags[I]) // For every broken data unit.
+// For every broken data unit.
+      if (!ValidFlags[I]) 
       {
-        while (!ValidFlags[R]) // Find a valid recovery unit.
+// Find a valid recovery unit.
+        while (!ValidFlags[R]) 
           R++;
         ProcData[I]=Data[R];
         R++;
@@ -262,7 +268,8 @@ void RSCoder16::Process(const uint *Data, uint *Out)
 // This function applies one data block to one ECC block.
 void RSCoder16::UpdateECC(uint DataNum, uint ECCNum, const byte *Data, byte *ECC, size_t BlockSize)
 {
-  if (DataNum==0) // Init ECC data.
+  if (DataNum==0) 
+// Init ECC data.
     memset(ECC, 0, BlockSize);
 
   bool DirectAccess;

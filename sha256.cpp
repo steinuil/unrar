@@ -117,8 +117,9 @@ void sha256_done(sha256_context *ctx, byte *Digest)
   uint BufPos = (uint)ctx->Count & 0x3f;
   ctx->Buffer[BufPos++] = 0x80; // Padding the message with "1" bit.
 
-  if (BufPos!=56) // We need 56 bytes block followed by 8 byte length.
+  if (BufPos!=56) 
   {
+// We need 56 bytes block followed by 8 byte length.
     if (BufPos>56)
     {
       while (BufPos<64)

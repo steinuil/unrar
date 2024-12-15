@@ -176,8 +176,9 @@ void sha1_done( sha1_context* context, uint32 digest[5])
   uint BufPos = (uint)context->count & 0x3f;
   context->buffer[BufPos++] = 0x80; // Padding the message with "1" bit.
 
-  if (BufPos!=56) // We need 56 bytes block followed by 8 byte length.
+  if (BufPos!=56) 
   {
+// We need 56 bytes block followed by 8 byte length.
     if (BufPos>56)
     {
       while (BufPos<64)

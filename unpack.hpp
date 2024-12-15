@@ -410,7 +410,8 @@ class Unpack:PackDef
       if (Inp.InAddr>BitInput::MAX_SIZE-30)
       {
         UnpReadBuf();
-        if (Inp.InAddr>=BitInput::MAX_SIZE) // If nothing was read.
+        if (Inp.InAddr>=BitInput::MAX_SIZE) 
+// If nothing was read.
           return 0;
       }
       return Inp.InBuf[Inp.InAddr++];

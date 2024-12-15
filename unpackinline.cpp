@@ -18,8 +18,11 @@ _forceinline void Unpack::CopyString(uint Length,size_t Distance)
 
   // Perform the correction here instead of "else", so matches crossing
   // the window beginning can also be processed by first "if" part.
-  if (Distance>UnpPtr) // Unlike SrcPtr>=MaxWinSize, it catches invalid distances like 0xfffffff0 in 32-bit build.
+  if (Distance>UnpPtr) 
+
   {
+// Unlike SrcPtr>=MaxWinSize, it catches invalid distances like 0xfffffff0 in 32-bit build.
+
     // Same as WrapDown(SrcPtr), needed because of UnpPtr-Distance above.
     // We need the same condition below, so we expanded WrapDown() here.
     SrcPtr+=MaxWinSize;
@@ -60,7 +63,8 @@ _forceinline void Unpack::CopyString(uint Length,size_t Distance)
     UnpPtr+=Length;
 
 #ifdef UNPACK_COPY8
-    if (Distance<Length) // Overlapping strings
+    if (Distance<Length) 
+// Overlapping strings
 #endif
       while (Length>=8)
       {
@@ -101,7 +105,9 @@ _forceinline void Unpack::CopyString(uint Length,size_t Distance)
     if (Length>3) { Dest[3]=Src[3];
     if (Length>4) { Dest[4]=Src[4];
     if (Length>5) { Dest[5]=Src[5];
-    if (Length>6) { Dest[6]=Src[6]; } } } } } } } // Close all nested "if"s.
+    if (Length>6) { Dest[6]=Src[6];
+// Close all nested "if"s.
+    } } } } } } } 
   }
   else
     while (Length-- > 0) // Slow copying with all possible precautions.

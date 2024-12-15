@@ -14,8 +14,9 @@ MKDIR_CODE MakeDir(const std::wstring &Name,bool SetAttr,uint Attr)
     if (GetWinLongPath(Name,LongName))
       RetCode=CreateDirectory(LongName.c_str(),NULL);
   }
-  if (RetCode!=0) // Non-zero return code means success for CreateDirectory.
+  if (RetCode!=0) 
   {
+// Non-zero return code means success for CreateDirectory.
     if (SetAttr)
       SetFileAttr(Name,Attr);
     return MKDIR_SUCCESS;
@@ -419,7 +420,8 @@ void CalcFileSum(File *SrcFile,uint *CRC32,byte *Blake2,uint Threads,int64 Size,
   while (true)
   {
     size_t SizeToRead;
-    if (Size==INT64NDF)   // If we process the entire file.
+// If we process the entire file.
+    if (Size==INT64NDF)   
       SizeToRead=BufSize; // Then always attempt to read the entire buffer.
     else
       SizeToRead=(size_t)Min((int64)BufSize,Size);

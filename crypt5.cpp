@@ -8,8 +8,9 @@ static void hmac_sha256(const byte *Key,size_t KeyLength,const byte *Data,
   const size_t Sha256BlockSize=64; // As defined in RFC 4868.
 
   byte KeyHash[SHA256_DIGEST_SIZE];
-  if (KeyLength > Sha256BlockSize) // Convert longer keys to key hash.
+  if (KeyLength > Sha256BlockSize) 
   {
+// Convert longer keys to key hash.
     sha256_context KCtx;
     sha256_init(&KCtx);
     sha256_process(&KCtx, Key, KeyLength);
@@ -39,8 +40,9 @@ static void hmac_sha256(const byte *Key,size_t KeyLength,const byte *Data,
     sha256_process(&ICtx, KeyBuf, Sha256BlockSize); // Hash padded key.
   }
 
-  if (ICtxOpt!=NULL && !*SetIOpt) // Store constant context for further reuse.
+  if (ICtxOpt!=NULL && !*SetIOpt) 
   {
+// Store constant context for further reuse.
     *ICtxOpt=ICtx;
     *SetIOpt=true;
   }
@@ -69,8 +71,9 @@ static void hmac_sha256(const byte *Key,size_t KeyLength,const byte *Data,
     sha256_process(&RCtx, KeyBuf, Sha256BlockSize); // Hash padded key.
   }
 
-  if (RCtxOpt!=NULL && !*SetROpt) // Store constant context for further reuse.
+  if (RCtxOpt!=NULL && !*SetROpt) 
   {
+// Store constant context for further reuse.
     *RCtxOpt=RCtx;
     *SetROpt=true;
   }

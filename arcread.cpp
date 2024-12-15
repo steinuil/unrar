@@ -593,8 +593,9 @@ size_t Archive::ReadHeader50()
       if (EncSet && CryptHead.UsePswCheck && !BrokenHeader &&
           memcmp(PswCheck,CryptHead.PswCheck,SIZE_PSWCHECK)!=0)
       {
-        if (GlobalPassword) // For -p<pwd> or Ctrl+P.
+        if (GlobalPassword) 
         {
+// For -p<pwd> or Ctrl+P.
           // This message is used by Android GUI to reset cached passwords.
           // Update appropriate code if changed.
           uiMsg(UIERROR_BADPSW,FileName,FileName);
@@ -895,7 +896,8 @@ size_t Archive::ReadHeader50()
           MainComment=true;
 
 
-        if (BadCRC) // Add the file name to broken header message displayed above.
+        if (BadCRC) 
+// Add the file name to broken header message displayed above.
           uiMsg(UIERROR_FHEADERBROKEN,Archive::FileName,hd->FileName);
       }
       break;
@@ -976,7 +978,8 @@ void Archive::ProcessExtra50(RawRead *Raw,size_t ExtraSize,const BaseBlock *bb)
 
     FieldSize=int64(NextPos-Raw->GetPos()); // Field size without size and type fields.
 
-    if (FieldSize<0) // FieldType is longer than expected extra field size.
+    if (FieldSize<0) 
+// FieldType is longer than expected extra field size.
       break;
 
     if (bb->HeaderType==HEAD_MAIN)
@@ -991,13 +994,15 @@ void Archive::ProcessExtra50(RawRead *Raw,size_t ExtraSize,const BaseBlock *bb)
             if ((Flags & MHEXTRA_LOCATOR_QLIST)!=0)
             {
               uint64 Offset=Raw->GetV();
-              if (Offset!=0) // 0 means that reserved space was not enough to write the offset.
+              if (Offset!=0) 
+// 0 means that reserved space was not enough to write the offset.
                 hd->QOpenOffset=Offset+CurBlockPos;
             }
             if ((Flags & MHEXTRA_LOCATOR_RR)!=0)
             {
               uint64 Offset=Raw->GetV();
-              if (Offset!=0) // 0 means that reserved space was not enough to write the offset.
+              if (Offset!=0) 
+// 0 means that reserved space was not enough to write the offset.
                 hd->RROffset=Offset+CurBlockPos;
             }
           }
@@ -1008,8 +1013,9 @@ void Archive::ProcessExtra50(RawRead *Raw,size_t ExtraSize,const BaseBlock *bb)
             if ((Flags & MHEXTRA_METADATA_NAME)!=0)
             {
               uint64 NameSize=Raw->GetV();
-              if (NameSize>0 && NameSize<MAXPATHSIZE) // Prevent excessive allocation.
+              if (NameSize>0 && NameSize<MAXPATHSIZE) 
               {
+// Prevent excessive allocation.
                 std::string NameU((size_t)NameSize,0); // UTF-8 name.
                 Raw->GetB(&NameU[0],(size_t)NameSize);
                 // If starts from 0, the name was longer than reserved space
@@ -1116,8 +1122,9 @@ void Archive::ProcessExtra50(RawRead *Raw,size_t ExtraSize,const BaseBlock *bb)
                 hd->atime.SetUnix((time_t)Raw->Get4());
               else
                 hd->atime.SetWin(Raw->Get8());
-            if (UnixTime && (Flags & FHEXTRA_HTIME_UNIX_NS)!=0) // Add nanoseconds.
+            if (UnixTime && (Flags & FHEXTRA_HTIME_UNIX_NS)!=0) 
             {
+// Add nanoseconds.
               uint ns;
               if ((Flags & FHEXTRA_HTIME_MTIME)!=0 && (ns=(Raw->Get4() & 0x3fffffff))<1000000000)
                 hd->mtime.Adjust(ns);
@@ -1353,13 +1360,15 @@ void Archive::ConvertAttributes()
       {
         // Mapping MSDOS, OS/2 and Windows file attributes to Unix.
 
-        if (FileHead.FileAttr & 0x10) // FILE_ATTRIBUTE_DIRECTORY
+// FILE_ATTRIBUTE_DIRECTORY
+        if (FileHead.FileAttr & 0x10) 
         {
           // For directories we use 0777 mask.
           FileHead.FileAttr=0777 & ~mask;
         }
         else
-          if (FileHead.FileAttr & 1)  // FILE_ATTRIBUTE_READONLY
+// FILE_ATTRIBUTE_READONLY
+          if (FileHead.FileAttr & 1)  
           {
             // For read only files we use 0444 mask with 'w' bits turned off.
             FileHead.FileAttr=0444 & ~mask;
@@ -1396,7 +1405,8 @@ void Archive::ConvertFileHeader(FileHeader *hd)
 */
 
 #ifdef _WIN_ALL
-  if (hd->HSType==HSYS_UNIX) // Convert Unix, OS X and Android decomposed chracters to Windows precomposed.
+  if (hd->HSType==HSYS_UNIX) 
+// Convert Unix, OS X and Android decomposed chracters to Windows precomposed.
     ConvertToPrecomposed(hd->FileName);
 #endif
 

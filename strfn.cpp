@@ -392,7 +392,8 @@ void fmtitoa(int64 n,wchar *Str,size_t MaxSize)
 #elif defined(_UNIX)
   ThSep=*localeconv()->thousands_sep;
 #endif
-  if (ThSep==0) // If failed to detect the actual separator value.
+  if (ThSep==0) 
+// If failed to detect the actual separator value.
     ThSep=' ';
   wchar RawText[30]; // 20 characters are enough for largest unsigned 64 bit int.
   itoa(n,RawText,ASIZE(RawText));

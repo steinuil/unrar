@@ -90,7 +90,8 @@ static int CalcAllowedDepth(const std::wstring &Name)
 // Check if all existing path components are directories and not links.
 static bool LinkInPath(std::wstring Path)
 {
-  if (Path.empty()) // So we can safely use Path.size()-1 below.
+  if (Path.empty()) 
+// So we can safely use Path.size()-1 below.
     return false;
   for (size_t I=Path.size()-1;I>0;I--)
     if (IsPathDiv(Path[I]))
@@ -164,7 +165,8 @@ bool ExtractSymlink(CommandData *Cmd,ComprDataIO &DataIO,Archive &Arc,const std:
 
   UpLink=true; // Assume the target might include potentially unsafe "..".
 #if defined(SAVE_LINKS) && defined(_UNIX) || defined(_WIN_ALL)
-  if (Arc.Format==RARFMT50) // For RAR5 archives we can check RedirName for both Unix and Windows.
+  if (Arc.Format==RARFMT50) 
+// For RAR5 archives we can check RedirName for both Unix and Windows.
     UpLink=Arc.FileHead.RedirName.find(L"..")!=std::wstring::npos;
 #endif
 

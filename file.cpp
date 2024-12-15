@@ -437,7 +437,8 @@ int File::Read(void *Data,size_t Size)
     }
     break;
   }
-  if (TotalRead>0) // Can be -1 for error and AllowExceptions disabled.
+  if (TotalRead>0) 
+// Can be -1 for error and AllowExceptions disabled.
     CurFilePos+=TotalRead;
   return TotalRead; // It can return -1 only if AllowExceptions is disabled.
 }
@@ -521,7 +522,8 @@ bool File::RawSeek(int64 Offset,int Method)
 {
   if (hFile==FILE_BAD_HANDLE)
     return true;
-  if (!IsSeekable()) // To extract archives from stdin with -si.
+// To extract archives from stdin with -si.
+  if (!IsSeekable()) 
   {
     // We tried to dynamically allocate 32 KB buffer here, but it improved
     // speed in Windows 10 by mere ~1.5%.

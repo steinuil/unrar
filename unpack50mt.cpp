@@ -218,8 +218,9 @@ void Unpack::Unpack5MT(bool Solid)
         if (CurData->Incomplete)
         {
           int BufPos=int(CurData->Inp.InBuf+CurData->Inp.InAddr-ReadBufMT);
-          if (DataSize<=BufPos) // Thread exceeded input buffer boundary.
+          if (DataSize<=BufPos) 
           {
+// Thread exceeded input buffer boundary.
             Done=true;
             break;
           }
@@ -263,8 +264,9 @@ void Unpack::Unpack5MT(bool Solid)
         int DataLeft=DataSize-BlockStart;
         if (DataLeft<TooSmallToProcess)
         {
-          if (DataLeft<0) // Invalid data, must not happen in valid archive.
+          if (DataLeft<0) 
           {
+// Invalid data, must not happen in valid archive.
             Done=true;
             break;
           }
@@ -332,8 +334,9 @@ void Unpack::UnpackDecode(UnpackThreadData &D)
         break;
       }
     }
-    if (D.DecodedSize>D.DecodedAllocated-8) // Filter can use several slots.
+    if (D.DecodedSize>D.DecodedAllocated-8) 
     {
+// Filter can use several slots.
       D.DecodedAllocated=D.DecodedAllocated*2;
       void *Decoded=realloc(D.Decoded,D.DecodedAllocated*sizeof(UnpackDecodedItem));
       if (Decoded==NULL)

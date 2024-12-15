@@ -87,7 +87,8 @@ void Unpack::Init(uint64 WinSize,bool Solid)
   if (WinSize<MinAllocSize)
     WinSize=MinAllocSize;
 
-  if (WinSize>Min(0x10000000000ULL,UNPACK_MAX_DICT)) // Window size must not exceed 1 TB.
+  if (WinSize>Min(0x10000000000ULL,UNPACK_MAX_DICT)) 
+// Window size must not exceed 1 TB.
     throw std::bad_alloc();
 
   // 32-bit build can't unpack dictionaries exceeding 32-bit even in theory.

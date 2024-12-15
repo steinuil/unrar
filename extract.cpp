@@ -187,7 +187,8 @@ EXTRACT_ARC_CODE CmdExtract::ExtractArchive()
     return EXTRACT_ARC_NEXT;
   }
 
-  if (Arc.FailedHeaderDecryption) // Bad archive password.
+  if (Arc.FailedHeaderDecryption) 
+// Bad archive password.
     return EXTRACT_ARC_NEXT;
 
 #ifndef SFX_MODULE
@@ -392,7 +393,8 @@ bool CmdExtract::ExtractCurrentFile(Archive &Arc,size_t HeaderSize,bool &Repeat)
   {
     Cmd->ArcPath=MatchedArg;
     GetPathWithSep(Cmd->ArcPath,Cmd->ArcPath);
-    if (IsWildcard(Cmd->ArcPath)) // Cannot correctly process path*\* masks here.
+    if (IsWildcard(Cmd->ArcPath)) 
+// Cannot correctly process path*\* masks here.
       Cmd->ArcPath.clear();
   }
 #endif
@@ -482,7 +484,8 @@ bool CmdExtract::ExtractCurrentFile(Archive &Arc,size_t HeaderSize,bool &Repeat)
       {
         ExtractRef &MatchedRef=RefList[I];
       
-        if (!Cmd->Test) // While harmless, it is useless for 't'.
+// While harmless, it is useless for 't'.
+        if (!Cmd->Test) 
         {
           // If reference source isn't selected, but target is selected,
           // we unpack the source under the temporary name and then rename
@@ -594,7 +597,8 @@ bool CmdExtract::ExtractCurrentFile(Archive &Arc,size_t HeaderSize,bool &Repeat)
         if (EncSet && Arc.FileHead.UsePswCheck && !Arc.BrokenHeader &&
             memcmp(Arc.FileHead.PswCheck,PswCheck,SIZE_PSWCHECK)!=0)
         {
-          if (GlobalPassword) // For -p<pwd> or Ctrl+P to avoid the infinite loop.
+// For -p<pwd> or Ctrl+P to avoid the infinite loop.
+          if (GlobalPassword) 
           {
             // This message is used by Android GUI to reset cached passwords.
             // Update appropriate code if changed.
@@ -682,7 +686,8 @@ bool CmdExtract::ExtractCurrentFile(Archive &Arc,size_t HeaderSize,bool &Repeat)
         return true;
       }
       else
-        if (ExtrFile) // Create files and file copies (FSREDIR_FILECOPY).
+// Create files and file copies (FSREDIR_FILECOPY).
+        if (ExtrFile) 
         {
           // Check the dictionary size before creating a file and issuing
           // any overwrite prompts.
@@ -763,7 +768,8 @@ bool CmdExtract::ExtractCurrentFile(Archive &Arc,size_t HeaderSize,bool &Repeat)
       if (!TestMode && !Arc.BrokenHeader &&
           Arc.FileHead.UnpSize>0xffffffff && (Fat32 || !NotFat32))
       {
-        if (!Fat32) // Not detected yet.
+        if (!Fat32) 
+// Not detected yet.
           NotFat32=!(Fat32=IsFAT(Cmd->ExtrPath));
         if (Fat32)
           uiMsg(UIMSG_FAT32SIZE); // Inform user about FAT32 size limit.
@@ -805,7 +811,8 @@ bool CmdExtract::ExtractCurrentFile(Archive &Arc,size_t HeaderSize,bool &Repeat)
 
           std::wstring NameExisting;
           ExtrPrepareName(Arc,RedirName,NameExisting);
-          if (FileCreateMode && !NameExisting.empty()) // *NameExisting can be empty in case of excessive -ap switch.
+// *NameExisting can be empty in case of excessive -ap switch.
+          if (FileCreateMode && !NameExisting.empty()) 
             if (Type==FSREDIR_HARDLINK)
               LinkSuccess=ExtractHardlink(Cmd,DestFileName,NameExisting);
             else
@@ -1059,8 +1066,9 @@ bool CmdExtract::ExtractFileCopy(File &New,const std::wstring &ArcName,const std
         // it is faster to move the file instead of copying and deleting it.
         bool RefMove=RefList[I].RefCount-- == 1;
         TmpExisting=RefList[I].TmpName;
-        if (RefMove) // Only one reference left for this temporary file.
+        if (RefMove) 
         {
+// Only one reference left for this temporary file.
           New.Delete(); // Delete the previously opened destination file.
           // Try moving the file first.
           bool MoveFailed=!RenameFile(TmpExisting,NameNew);
@@ -1187,8 +1195,9 @@ void CmdExtract::ExtrPrepareName(Archive &Arc,const std::wstring &ArcFileName,st
       while (Pos<CurName.size() && IsPathDiv(CurName[Pos]))
         Pos++;
       CurName.erase(0,Pos);
-      if (CurName.empty()) // Excessive -ap switch.
+      if (CurName.empty()) 
       {
+// Excessive -ap switch.
         DestName.clear();
         return;
       }
@@ -1464,7 +1473,8 @@ bool CmdExtract::ExtrCreateFile(Archive &Arc,File &CurFile)
 bool CmdExtract::CheckUnpVer(Archive &Arc,const std::wstring &ArcFileName)
 {
   bool WrongVer;
-  if (Arc.Format==RARFMT50) // Both SFX and RAR can unpack RAR 5.0 and 7.0 archives.
+  if (Arc.Format==RARFMT50) 
+// Both SFX and RAR can unpack RAR 5.0 and 7.0 archives.
     WrongVer=Arc.FileHead.UnpVer>VER_UNPACK7;
   else
   {
@@ -1565,8 +1575,10 @@ void CmdExtract::AnalyzeArchive(const std::wstring &ArcName,bool Volume,bool New
 
         if (!Arc.FileHead.SplitBefore)
         {
-          if (!MatchFound && !Arc.FileHead.Solid) // Can start extraction from here.
+          if (!MatchFound && !Arc.FileHead.Solid) 
           {
+// Can start extraction from here.
+
             // We would gain nothing and unnecessarily complicate extraction
             // if we set StartName for first volume or StartPos for first
             // archived file.
@@ -1622,8 +1634,10 @@ void CmdExtract::AnalyzeArchive(const std::wstring &ArcName,bool Volume,bool New
           }
           else
           {
-            if (PrevMatched) // First non-matched item after matched.
+            if (PrevMatched) 
             {
+// First non-matched item after matched.
+
               // We would perform the unnecessarily string comparison
               // when extracting if we set this value for first volume
               // or non-volume archive.
