@@ -1,4 +1,4 @@
-
+#include "rar.hpp"
 
 #ifdef _WIN_ALL
 // StreamName must include the leading ':'.

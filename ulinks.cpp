@@ -1,4 +1,4 @@
-
+#include "rar.hpp"
 
 static bool UnixSymlink(CommandData *Cmd,const std::string &Target,const wchar *LinkName,RarTime *ftm,RarTime *fta)
 {

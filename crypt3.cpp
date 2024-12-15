@@ -1,3 +1,5 @@
+#include "rar.hpp"
+
 void CryptData::SetKey30(bool Encrypt,SecPassword *Password,const wchar *PwdW,const byte *Salt)
 {
   byte AESKey[16],AESInit[16];

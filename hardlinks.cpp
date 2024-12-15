@@ -1,3 +1,5 @@
+#include "rar.hpp"
+
 bool ExtractHardlink(CommandData *Cmd,const std::wstring &NameNew,const std::wstring &NameExisting)
 {
   if (!FileExist(NameExisting))

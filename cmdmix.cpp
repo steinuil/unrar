@@ -1,3 +1,5 @@
+#include "rar.hpp"
+
 void CommandData::OutTitle()
 {
   if (BareOutput || DisableCopyright)

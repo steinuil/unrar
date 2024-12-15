@@ -1,3 +1,5 @@
+#include "rar.hpp"
+
 // Purely user interface function. Gets and returns user input.
 UIASKREP_RESULT uiAskReplace(std::wstring &Name,int64 FileSize,RarTime *FileTime,uint Flags)
 {

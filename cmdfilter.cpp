@@ -1,3 +1,5 @@
+#include "rar.hpp"
+
 // Return 'true' if we need to exclude the file from processing as result
 // of -x switch. If CheckInclList is true, we also check the file against
 // the include list created with -n switch.

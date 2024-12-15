@@ -1,3 +1,5 @@
+#include "rar.hpp"
+
 static bool GetAutoRenamedName(std::wstring &Name);
 static SOUND_NOTIFY_MODE uiSoundNotify;
 

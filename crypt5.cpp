@@ -1,3 +1,5 @@
+#include "rar.hpp"
+
 static void hmac_sha256(const byte *Key,size_t KeyLength,const byte *Data,
                         size_t DataLength,byte *ResDigest,
                         sha256_context *ICtxOpt,bool *SetIOpt,

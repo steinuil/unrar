@@ -1,3 +1,5 @@
+#include "rar.hpp"
+
 static bool AnyMessageDisplayed=false; // For console -idn switch.
 
 // Purely user interface function. Gets and returns user input.

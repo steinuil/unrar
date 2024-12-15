@@ -1,3 +1,5 @@
+#include "rar.hpp"
+
 static const uint MaxVolumes=65535;
 
 // We select this limit arbitrarily, to prevent user creating too many

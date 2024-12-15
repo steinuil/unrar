@@ -11,6 +11,8 @@
    this software. If not, see <http://creativecommons.org/publicdomain/zero/1.0/>.
 */
 
+#include "rar.hpp"
+
 #define PARALLELISM_DEGREE 8
 
 void blake2sp_init( blake2sp_state *S )

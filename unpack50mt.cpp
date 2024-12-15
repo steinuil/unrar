@@ -1,3 +1,5 @@
+#include "rar.hpp"
+
 // 2023.09.09: 0x400000 and 2 are optimal for i9-12900K.
 // Further increasing the buffer size reduced the extraction speed.
 #define UNP_READ_SIZE_MT        0x400000

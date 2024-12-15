@@ -1,4 +1,4 @@
-
+#include "rar.hpp"
 
 inline byte RangeCoder::GetChar()
 {

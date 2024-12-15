@@ -1,3 +1,5 @@
+#include "rar.hpp"
+
 _forceinline void Unpack::InsertOldDist(size_t Distance)
 {
   OldDist[3]=OldDist[2];

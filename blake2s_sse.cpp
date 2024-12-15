@@ -1,5 +1,7 @@
 // Based on public domain code written in 2012 by Samuel Neves
 
+#include "rar.hpp"
+
 // Initialization vector.
 static __m128i blake2s_IV_0_3, blake2s_IV_4_7;
 

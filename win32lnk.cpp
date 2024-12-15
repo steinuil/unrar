@@ -1,3 +1,5 @@
+#include "rar.hpp"
+
 #define SYMLINK_FLAG_RELATIVE 1
 
 typedef struct _REPARSE_DATA_BUFFER {

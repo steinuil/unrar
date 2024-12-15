@@ -1,3 +1,5 @@
+#include "rar.hpp"
+
 void CryptData::SetKey13(const char *Password)
 {
   Key13[0]=Key13[1]=Key13[2]=0;

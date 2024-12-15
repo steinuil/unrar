@@ -5,6 +5,8 @@
  *  Contents: model description and encoding/decoding routines              *
  ****************************************************************************/
 
+#include "rar.hpp"
+
 static const int MAX_O=64; /* maximum allowed model order */
 const uint TOP=1 << 24, BOT=1 << 15;
 
